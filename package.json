@@ -1,0 +1,26 @@
+{
+	"name": "diploma",
+	"version": "1.0.0",
+	"description": "Course project, rewritten in React for a diploma",
+	"main": "app.js",
+	"author": "aaneitchik",
+	"license": "MIT",
+	"scripts": {
+		"build": "rimraf public/ && webpack src/app.js dist/bundle.js"
+	},
+	"devDependencies": {
+		"babel-core": "^6.24.1",
+		"babel-loader": "^6.4.1",
+		"css-loader": "^0.28.0",
+		"rimraf": "^2.6.1",
+		"style-loader": "^0.16.1",
+		"stylelint": "^7.10.1",
+		"webpack": "^2.3.3",
+		"webpack-dev-server": "^2.4.2"
+	},
+	"dependencies": {
+		"react": "^15.5.3",
+		"react-dom": "^15.5.3",
+		"redux": "^3.6.0"
+	}
+}
