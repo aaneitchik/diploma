@@ -12,4 +12,4 @@ const server = new WebpackDevServer(compiler, {
     }
 });
 
-server.listen(3000, 'localhost', function() {});
+server.listen(3000, 'localhost', () => {});

@@ -6,7 +6,7 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
 const entry = PRODUCTION
     ? './src/index.js'
     : [
-          './src/index.js',
+          './src/index.jsx',
           'webpack/hot/dev-server',
           'webpack-dev-server/client?http://localhost:3000'
       ];
@@ -18,13 +18,13 @@ module.exports = {
         publicPath: '/dist/',
         filename: 'bundle.js'
     },
-	module: {
-		loaders: [
-			{
-				test: /\.js$/,
-				loaders: ['babel-loader'],
-				exclude: /node_modules/
-			}
-		]
-	}
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                loaders: ['babel-loader'],
+                exclude: /node_modules/
+            }
+        ]
+    }
 };
