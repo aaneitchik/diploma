@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 
 import App from './app/main/app.component';
@@ -33,6 +34,6 @@ injectGlobal`
 `;
 
 ReactDOM.render(
-	<ThemeProvider theme={appTheme}><App /></ThemeProvider>,
+	<Router><ThemeProvider theme={appTheme}><App /></ThemeProvider></Router>,
 	document.getElementById('app-container')
 );

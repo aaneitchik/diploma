@@ -4,18 +4,20 @@ import styled from 'styled-components';
 import Link from '../../components/link';
 import Button from '../../components/button';
 import Icon from '../../components/icon';
+import SidebarToggle from '../sidebar/sidebar-toggle';
 
 class TopNavigation extends React.Component {
 	render = () => {
 		return (
 			<div className={this.props.className}>
-				<Link onClick={this.props.toggleDrawer}>
-					<Icon type="menu" />
-				</Link>
-				<Link>Browse</Link>
-				<Link className="logo">BSU Lib</Link>
-				<div />
-				<Button>Load File</Button>
+				<div className="col"><SidebarToggle target="#offcanvas" /></div>
+				<div className="col">
+					<Link to="/" className="logo">BSU Lib</Link>
+				</div>
+				<div className="col">
+					<Link to="/search"><Icon type="search" /></Link>
+					<Button>Load File</Button>
+				</div>
 			</div>
 		);
 	};
@@ -30,7 +32,18 @@ export default styled(TopNavigation)`
 	font-size: 1.2rem;
 	border: 1px solid ${props => props.theme.borderColor};
 
-	& > {
-		flex: 1;	
+	.col {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.col:first-child {
+		justify-content: flex-start;
+	}
+	
+	.col:last-child {
+		justify-content: flex-end;
 	}
 `;

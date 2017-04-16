@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = (props) => {
-	return <button className={`uk-button uk-button-default ${props.className}`}>{props.children}</button>
+const Button = props => {
+	return (
+		<button className={`uk-button uk-button-default ${props.className}`}>
+			{props.children}
+		</button>
+	);
 };
 
 export default styled(Button)`
