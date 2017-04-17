@@ -7,7 +7,8 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "rimraf dist/ && cross-env NODE_ENV=production",
-		"dev": "cross-env NODE_ENV=development node dev-server.js"
+		"dev": "cross-env NODE_ENV=development node dev-server.js",
+		"server": "node server/server.js"
 	},
 	"devDependencies": {
 		"babel-core": "^6.24.1",
@@ -33,7 +34,11 @@
 	},
 	"dependencies": {
 		"axios": "^0.16.1",
+		"body-parser": "^1.17.1",
+		"express": "^4.15.2",
 		"jquery": "^3.2.1",
+		"mongoose": "^4.9.4",
+		"morgan": "^1.8.1",
 		"react": "^15.5.3",
 		"react-dom": "^15.5.3",
 		"react-router-dom": "^4.1.1",
