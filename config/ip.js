@@ -1,3 +1,3 @@
-const ip = require('config/ip');
+const ip = require('ip');
 
 module.exports = ip.address();

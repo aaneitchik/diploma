@@ -1,6 +1,8 @@
 const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 const config = require('./webpack.config');
+const ports = require('./config/ports');
+const ip = require('./config/ip');
 
 const compiler = webpack(config);
 const server = new WebpackDevServer(compiler, {
@@ -10,7 +12,11 @@ const server = new WebpackDevServer(compiler, {
 	stats: {
 		color: true
 	},
+	proxy: [{
+		path: '/api/*',
+		target: `http://${ip}:${ports.server}`
+	}],
 	historyApiFallback: true
 });
 
-server.listen(3000, 'localhost', () => {});
+server.listen(ports.ui, 'localhost', () => {});

@@ -27,13 +27,14 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	plugins,
+	devtool: 'eval-source-map',
 	resolve: {
 		extensions: ['.js', '.jsx']
 	},
 	module: {
 		loaders: [
 			{
-				test: /\.jsx$/,
+				test: /\.(js|jsx)$/,
 				loaders: ['babel-loader'],
 				exclude: /node_modules/
 			},

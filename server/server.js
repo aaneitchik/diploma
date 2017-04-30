@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const session = require('express-session');
 
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -16,6 +18,21 @@ mongoose.Promise = require('bluebird');
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(session({
+	secret: 'mybsulibappsecret',
+	resave: false,
+	saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+const fileRouter = require('./routes/file.routes');
+const authRouter = require('./routes/auth.routes');
+
+app.use('/api/files', fileRouter);
+app.use('/api', authRouter);
 
 app.listen(ports.server, () => {
     console.log(`Running on PORT ${ports.server}`);

@@ -12,7 +12,7 @@ const Button = props => {
 export default styled(Button)`
 	margin: 0 0.5rem;
 	color: ${props => props.theme.textColor};
-	border: 2px solid ${props => props.theme.textColor} !important;
+	border: 1px solid ${props => props.theme.textColor} !important;
 	border-radius: none;
 	font-family: Novecento-Medium;
 	transition: border-color 0.3s ease, color 0.3s ease !important;
