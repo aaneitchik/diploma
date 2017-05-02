@@ -1,18 +1,25 @@
 import axios from 'axios';
+import { union, flattenDeep } from 'lodash';
 
 const ROOT_URL = '/api/';
 
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_ERROR = 'LOGIN_ERROR';
 
-const INITIAL_STATE = { authenticated: false, user: {}, triedLogin: false };
+const INITIAL_STATE = {
+	authenticated: false,
+	user: { availableCategories: [] },
+	triedLogin: false
+};
 
 export default function reducer(state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case LOGIN_SUCCESS:
+			const user = action.payload.data;
+			user.availableCategories = getAvailableCategories(user);
 			return {
 				...state,
-				user: action.payload.data,
+				user,
 				authenticated: true,
 				triedLogin: true
 			};
@@ -49,4 +56,22 @@ export function loginWithCookies() {
 				dispatch({ type: LOGIN_ERROR, payload: err });
 			});
 	};
+}
+
+function getAvailableCategories(user) {
+	const currentSem = user.semester;
+	const previousSem = user.semester - 1;
+	const availableCategories = user.recordBook
+		.filter(
+			semester =>
+				semester.number === currentSem ||
+				semester.number === previousSem
+		)
+		.map(sem =>
+			sem.disciplines
+				.filter(discipline => !discipline.passed)
+				.map(discipline => discipline.name)
+		);
+	availableCategories.push('Программное обеспечение', 'Электронные курсы');
+	return union(flattenDeep(availableCategories));
 }

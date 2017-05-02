@@ -136,15 +136,12 @@ function getFilesByPage(
 			if (err) {
 				res.status(500).send(err);
 			} else {
-				results = results.map(file => {
+				results.docs = results.docs.map(file => {
 					const newFile = file.toObject();
 					newFile.rating = calcRating(file.rating, file.ratingSum);
 					return newFile;
 				});
-				res.json({
-					files: results,
-					totalCount: results.length
-				});
+				res.json(results);
 			}
 		}
 	);

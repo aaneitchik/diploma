@@ -7,7 +7,6 @@ require('../../config/passport')(passport);
 authRouter
 	.route('/login')
 	.post(passport.authenticate('local-login'), (req, res) => {
-		console.log(req);
 		res.status(200).send({
 			email: req.user.email,
 			role: req.user.role,

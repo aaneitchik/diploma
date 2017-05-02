@@ -15,7 +15,7 @@ fileRouter
 	});
 
 //get files by page
-fileRouter.route('/files').post(isLoggedIn, function(req, res) {
+fileRouter.route('').post(isLoggedIn, function(req, res) {
 	const {
 		pageNumber,
 		pageSize,

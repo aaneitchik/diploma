@@ -15,6 +15,7 @@ import requireAuth from './app/auth/auth.component';
 
 import NovecentoNormal from './assets/fonts/Novecentosanswide-Normal.otf';
 import NovecentoMedium from './assets/fonts/Novecentosanswide-Medium.otf';
+import OpenSansRegular from './assets/fonts/OpenSans-Regular.ttf';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -23,7 +24,9 @@ const store = createStoreWithMiddleware(reducers);
 
 const appTheme = {
 	primaryColor: '#fee469',
+	darkPrimaryColor: '#d0bb55',
 	textColor: '#161b24',
+	secondaryTextColor: '#b2b9c0',
 	hoverTextColor: '#5c6066',
 	borderColor: '#e5e6e7'
 };
@@ -39,12 +42,13 @@ injectGlobal`
 		src: url('${NovecentoNormal}') format('opentype');
 	}
 	
-	body {
-		font-family: Novecento-Normal, sans serif;
+	@font-face {
+		font-family: OpenSans-Regular;
+		src: url('${OpenSansRegular}') format('truetype');
 	}
 	
-	.loader {
-		
+	body {
+		font-family: Novecento-Normal, OpenSans-Regular, sans serif;
 	}
 `;
 
