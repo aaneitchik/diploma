@@ -5,7 +5,7 @@ import Filecard from './filecard';
 
 const CardContainer = props => {
 	const cards = props.files.map(file => (
-		<Filecard key={file._id} file={file} />
+		<Filecard key={file._id} file={file}/>
 	));
 	return (
 		<div className={props.className}>
@@ -20,4 +20,9 @@ export default styled(CardContainer)`
 	justify-content: space-around;
 	flex-wrap: wrap;
 	padding: 1rem 0;
+	color: ${props => props.theme.textColor};
+	
+	.uk-card {
+		width: 48%;
+	}
 `;

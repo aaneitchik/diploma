@@ -6,5 +6,5 @@ const Sidebar = props => {
 };
 
 export default styled(Sidebar)`
-	
+	background-color: rgba(255, 255, 255, 0.9);
 `;

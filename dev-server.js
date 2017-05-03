@@ -13,7 +13,7 @@ const server = new WebpackDevServer(compiler, {
 		color: true
 	},
 	proxy: [{
-		path: '/api/*',
+		path: '/api/**/*',
 		target: `http://${ip}:${ports.server}`
 	}],
 	historyApiFallback: true

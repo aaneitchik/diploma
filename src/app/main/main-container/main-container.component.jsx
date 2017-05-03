@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 
 import Browse from '../../browse/browse.component';
+import File from '../../file/file.component';
 import Search from '../../search/search.component';
 
 const routes = [
@@ -12,14 +13,18 @@ const routes = [
 		component: Browse
 	},
 	{
+		path: '/file/:id',
+		component: File
+	},
+	{
 		path: '/search',
 		component: Search
 	}
 ];
 
-const MainContainer = () => {
+const MainContainer = (props) => {
 	return (
-		<div>
+		<div className={props.className}>
 			{routes.map((route, index) => {
 				return (
 					<Route
@@ -35,5 +40,5 @@ const MainContainer = () => {
 };
 
 export default styled(MainContainer)`
-
+	padding: 0.5rem;
 `;

@@ -1,13 +1,17 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
 import FileIcon from './file-icon';
 
 const Filecard = props => {
 	const { file } = props;
-	const tags = file.tags.map(tag => <span key={tag} className="tag">#{tag}</span>);
+	const tags = file.tags.map(tag => (
+		<span key={tag} className="tag">#{tag}</span>
+	));
+
 	return (
-		<div className={`uk-card uk-card-default ${props.className}`}>
+		<Link to={`/file/${file._id}`} className={`uk-link-reset uk-card uk-card-default ${props.className}`}>
 			<div className="file-icon">
 				<FileIcon extension={file.fileExtension} />
 			</div>
@@ -18,18 +22,17 @@ const Filecard = props => {
 				<p className="tags">{tags}</p>
 				<p className="extension">.{file.fileExtension}</p>
 			</div>
-		</div>
+		</Link>
 	);
 };
 
 export default styled(Filecard)`
 	display: flex;
-	width: 48%;
 	margin-bottom: 1rem;
 	padding: 0.5rem;
-	font-family: OpenSans-Regular, sans serif;
 	font-size: 0.7rem;
 	text-transform: uppercase;
+	word-break: break-word;
 	
 	&:last-child {
 		margin-top: 0;

@@ -22,6 +22,9 @@ const Pagination = props => {
 };
 
 export default styled(Pagination)`
+	background-color: rgba(255, 255, 255, 1);
+	padding: 0.25rem 0;
+	
 	.selected {
 		font-weight: bold;
 	}

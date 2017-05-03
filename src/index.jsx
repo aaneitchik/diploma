@@ -13,9 +13,8 @@ import App from './app/main/app.component';
 import Login from './app/login/login.component';
 import requireAuth from './app/auth/auth.component';
 
-import NovecentoNormal from './assets/fonts/Novecentosanswide-Normal.otf';
-import NovecentoMedium from './assets/fonts/Novecentosanswide-Medium.otf';
-import OpenSansRegular from './assets/fonts/OpenSans-Regular.ttf';
+import SourceSansProRegular from './assets/fonts/SourceSansPro-Regular.otf';
+import SourceSansProLight from './assets/fonts/SourceSansPro-Light.otf';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -23,32 +22,29 @@ const store = createStoreWithMiddleware(reducers);
 /* global document */
 
 const appTheme = {
-	primaryColor: '#fee469',
-	darkPrimaryColor: '#d0bb55',
-	textColor: '#161b24',
+	primaryColor: '#00a3ad',
+	darkPrimaryColor: '#007178',
+	textColor: '#3e4a64',
 	secondaryTextColor: '#b2b9c0',
 	hoverTextColor: '#5c6066',
-	borderColor: '#e5e6e7'
+	borderColor: '#e5e6e7',
+	color: '#e6f2f0'
 };
 
 injectGlobal`
 	@font-face {
-		font-family: Novecento-Medium;
-		src: url('${NovecentoMedium}') format('opentype');
+		font-family: SourceSansPro-Light;
+		src: url('${SourceSansProLight}') format('opentype');
 	}
 	
 	@font-face {
-		font-family: Novecento-Normal;
-		src: url('${NovecentoNormal}') format('opentype');
-	}
-	
-	@font-face {
-		font-family: OpenSans-Regular;
-		src: url('${OpenSansRegular}') format('truetype');
+		font-family: SourceSansPro-Regular;
+		src: url('${SourceSansProRegular}') format('opentype');
 	}
 	
 	body {
-		font-family: Novecento-Normal, OpenSans-Regular, sans serif;
+		font-family: SourceSansPro-Regular, sans serif;
+		background-color: rgba(230, 242, 240, 0.4);
 	}
 `;
 

@@ -6,12 +6,12 @@ const isLoggedIn = require('../middleware/is-logged-in');
 const fileRouter = express.Router();
 require('../../config/passport')(passport);
 
-//get number of files
-fileRouter
-	.route('/files_number/:category/:subcategory')
+//get file by id
+fileRouter.route('/:id')
 	.get(isLoggedIn, function(req, res) {
-		const { category, subcategory } = req.params;
-		return fileCtrl.getNumberOfFiles(res, category, subcategory);
+		const { id } = req.params;
+		const userId = req.user._id;
+		return fileCtrl.getFileById(res, id, userId);
 	});
 
 //get files by page

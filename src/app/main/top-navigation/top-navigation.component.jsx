@@ -30,6 +30,7 @@ export default styled(TopNavigation)`
 	height: 3rem;
 	padding: 0.5rem;
 	font-size: 1.2rem;
+	background-color: rgba(255, 255, 255, 0.7);
 	border: 1px solid ${props => props.theme.borderColor};
 
 	.col {

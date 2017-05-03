@@ -14,8 +14,8 @@ export default styled(Button)`
 	color: ${props => props.theme.textColor};
 	border: 1px solid ${props => props.theme.textColor} !important;
 	border-radius: none;
-	font-family: Novecento-Medium;
-	transition: border-color 0.3s ease, color 0.3s ease !important;
+	font-family: SourceSansPro-Regular;
+	transition: border-color 0.5s ease, color 0.3s ease !important;
 	
 	&:hover {
 		color: ${props => props.theme.primaryColor};

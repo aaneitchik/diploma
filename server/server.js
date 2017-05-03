@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -27,6 +28,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 const fileRouter = require('./routes/file.routes');
 const authRouter = require('./routes/auth.routes');
