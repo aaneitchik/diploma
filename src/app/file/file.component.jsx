@@ -4,11 +4,14 @@ import styled from 'styled-components';
 
 import * as fileActions from './file';
 
+import Button from '../components/button';
+
 class File extends React.Component {
 	componentDidMount() {
 		const fileId = this.props.match.params.id;
 		this.props.getFileById(fileId);
 	}
+
 	render() {
 		const { file } = this.props;
 		return (
@@ -17,6 +20,7 @@ class File extends React.Component {
 				<h5 className="author">{file.author}</h5>
 				<p>{file.shortDescription}</p>
 				<p>{file.description}</p>
+				<Button>Load File</Button>
 			</div>
 		);
 	}
