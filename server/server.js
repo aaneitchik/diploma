@@ -20,11 +20,13 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(session({
-	secret: 'mybsulibappsecret',
-	resave: false,
-	saveUninitialized: false
-}));
+app.use(
+	session({
+		secret: 'mybsulibappsecret',
+		resave: false,
+		saveUninitialized: false
+	})
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -37,5 +39,5 @@ app.use('/api/files', fileRouter);
 app.use('/api', authRouter);
 
 app.listen(ports.server, () => {
-    console.log(`Running on PORT ${ports.server}`);
+	console.log(`Running on PORT ${ports.server}`);
 });

@@ -2,6 +2,7 @@ const fs = require('fs');
 const nodemailer = require('nodemailer');
 
 const File = require('../models/file.model');
+
 const filePath = './uploads/';
 
 const smtpTransport = nodemailer.createTransport({
@@ -23,9 +24,9 @@ exports.getFilesByPage = getFilesByPage;
 exports.sendFileByMail = sendFileByMail;
 exports.setRating = setRating;
 
-//add file
+// add file
 function addFile(res, fileInfo, file) {
-	file = new File({
+	const newFile = new File({
 		title: fileInfo.title,
 		author: fileInfo.author,
 		tags: fileInfo.tags,
@@ -35,11 +36,11 @@ function addFile(res, fileInfo, file) {
 		publicationPlace: fileInfo.publicationPlace || null,
 		shortDescription: fileInfo.shortDescription,
 		description: fileInfo.description,
-		filepath: file.destination + '/' + file.originalname,
+		filepath: `${file.destination}/${file.originalname}`,
 		filename: file.originalname,
 		fileExtension: getFileExtension(file.originalname)
 	});
-	file.save(err => {
+	newFile.save(err => {
 		if (err) {
 			res.status(500).send(err);
 		} else {
@@ -48,7 +49,7 @@ function addFile(res, fileInfo, file) {
 	});
 }
 
-//delete file by id
+// delete file by id
 function deleteFileById(res, id) {
 	File.findByIdAndRemove(id, err => {
 		if (err) {
@@ -59,7 +60,7 @@ function deleteFileById(res, id) {
 	});
 }
 
-//edit file info
+// edit file info
 function editFileById(res, id, fileInfo) {
 	const toUpdate = {
 		title: fileInfo.title,
@@ -81,7 +82,7 @@ function editFileById(res, id, fileInfo) {
 	});
 }
 
-//find files
+// find files
 function findFiles(res, searchQuery) {
 	const query = constructSearchQuery(searchQuery);
 	File.find(query, (err, results) => {
@@ -93,7 +94,7 @@ function findFiles(res, searchQuery) {
 	});
 }
 
-//get all files
+// get all files
 function getFiles(res, categories) {
 	File.find({ category: { $in: categories } }, (err, files) => {
 		if (err) {
@@ -132,16 +133,17 @@ function getFilesByPage(
 	File.paginate(
 		query,
 		{ page: pageNumber, limit: pageSize, sortBy: { ratingSum: -1 } },
-		(err, results) => {
+		(err, files) => {
 			if (err) {
 				res.status(500).send(err);
 			} else {
-				results.docs = results.docs.map(file => {
+				const result = Object.assign({}, files);
+				result.docs = result.docs.map(file => {
 					const newFile = file.toObject();
 					newFile.rating = calcRating(file.rating, file.ratingSum);
 					return newFile;
 				});
-				res.json(results);
+				res.json(files);
 			}
 		}
 	);
@@ -173,10 +175,10 @@ function downloadFile(res, id, pdfFile) {
 }
 
 function base64_encode(destination, filepath) {
-	//need this prefix to download from frontend
-	const prefix = 'data:' + ';base64,';
+	// need this prefix to download from frontend
+	const prefix = 'data:;base64,';
 	// read binary data
-	const bitmap = fs.readFileSync(destination + '/' + filepath);
+	const bitmap = fs.readFileSync(`${destination}/${filepath}`);
 	const base64 = new Buffer(bitmap, 'binary').toString('base64');
 	return prefix + base64;
 }
@@ -185,19 +187,17 @@ function constructCategoryQuery(category, subcategory, availableCategories) {
 	let query = {};
 	if (category === 'All') {
 		query = { category: { $in: availableCategories } };
+	} else if (subcategory === 'All') {
+		query = { category };
 	} else {
-		if (subcategory === 'All') {
-			query = { category: category };
-		} else {
-			query = { category: category, subcategory: subcategory };
-		}
+		query = { category, subcategory };
 	}
 	return query;
 }
 
 function constructSearchQuery(searchQuery) {
-	let query = {};
-	Object.keys(searchQuery).forEach(function(key) {
+	const query = {};
+	Object.keys(searchQuery).forEach(key => {
 		if (key === 'category') {
 			if (searchQuery[key] === 'All') {
 				return;
@@ -206,13 +206,12 @@ function constructSearchQuery(searchQuery) {
 		if (key === 'subcategory') {
 			if (searchQuery.category === 'All') {
 				return;
-			} else {
-				query.category = searchQuery.category;
-				if (!(searchQuery[key] === 'All')) {
-					query[key] = searchQuery[key];
-				}
-				return;
 			}
+			query.category = searchQuery.category;
+			if (!(searchQuery[key] === 'All')) {
+				query[key] = searchQuery[key];
+			}
+			return;
 		}
 		if (
 			!(!searchQuery[key] ||
@@ -238,7 +237,7 @@ function sendFileByMail(res, fileId, email) {
 					const mailOptions = {
 						from: 'BSU Lib <bsudigitallib@gmail.com>',
 						to: email,
-						subject: 'Your requested file: ' + file.filename,
+						subject: `Your requested file: ${file.filename}`,
 						text: "Here's the requested file, as promised :)",
 						attachments: [
 							{

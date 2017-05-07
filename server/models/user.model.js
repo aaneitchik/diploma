@@ -17,15 +17,15 @@ const userModel = new Schema({
 	}
 });
 
-userModel.methods.generateHash = function(password) {
+userModel.methods.generateHash = function generateHash(password) {
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-userModel.methods.validPassword = function(password) {
+userModel.methods.validPassword = function validPassword(password) {
 	return bcrypt.compareSync(password, this.password);
 };
 
-userModel.methods.isAdmin = function(role) {
+userModel.methods.isAdmin = function isAdmin(role) {
 	return role === ROLES.ADMIN;
 };
 
