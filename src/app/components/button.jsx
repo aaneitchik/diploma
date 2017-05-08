@@ -2,18 +2,27 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 
-const Button = props => (
-	<button {...props} className={`uk-button uk-button-default ${props.className}`}>
-		{props.children}
-	</button>
-);
+const Button = props => {
+	const Tag = props.href ? 'a' : 'button';
+	return (
+		<Tag
+			{...props}
+			className={`uk-button uk-button-default ${props.className}`}
+		>
+			{props.children}
+		</Tag>
+	);
+};
 
 Button.defaultProps = {
-	className: ''
+	className: '',
+	href: ''
 };
 
 Button.propTypes = {
-	className: PropTypes.string
+	className: PropTypes.string,
+	href: PropTypes.string,
+	children: PropTypes.node.isRequired
 };
 
 export default styled(Button)`

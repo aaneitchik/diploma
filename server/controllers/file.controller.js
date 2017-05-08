@@ -1,5 +1,6 @@
 const fs = require('fs');
 const nodemailer = require('nodemailer');
+const contentDisposition = require('content-disposition');
 
 const File = require('../models/file.model');
 
@@ -164,10 +165,14 @@ function downloadFile(res, id, pdfFile) {
 					const buffer = new Buffer(fileToDownload, 'binary');
 					const stat = fs.statSync(filePath + file.filename);
 					const contentType = `application/${pdfFile ? 'pdf' : 'octet-stream'}`;
-					const contentDisposition = `${pdfFile ? 'inline' : 'attachment'}; filename=${file.filename}`;
 					res.setHeader('Content-Length', stat.size);
 					res.setHeader('Content-Type', contentType);
-					res.setHeader('Content-Disposition', contentDisposition);
+					res.setHeader(
+						'Content-Disposition',
+						contentDisposition(file.filename, {
+							type: pdfFile ? 'inline' : 'attachment'
+						})
+					);
 					res.end(buffer);
 				});
 		}

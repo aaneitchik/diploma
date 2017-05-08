@@ -39,7 +39,6 @@ export function getFileById(fileId) {
 export function downloadFile(fileId, filename) {
 	return () => {
 		const downloadLink = `${window.location.origin}${ROOT_URL}/download/${fileId}`;
-		console.log(downloadLink);
 		const tempLink = document.createElement('a');
 		tempLink.href = downloadLink;
 		tempLink.setAttribute('download', filename);

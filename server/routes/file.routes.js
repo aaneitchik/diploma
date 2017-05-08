@@ -39,4 +39,12 @@ fileRouter.route('/download/:id').get(isLoggedIn, (req, res) => {
 	return fileCtrl.downloadFile(res, id);
 });
 
+// open pdf
+fileRouter.route('/open_pdf/:id')
+	.get(isLoggedIn, (req, res) => {
+		const id = req.params.id;
+		const pdfFile = true;
+		return fileCtrl.downloadFile(res, id, pdfFile);
+	});
+
 module.exports = fileRouter;

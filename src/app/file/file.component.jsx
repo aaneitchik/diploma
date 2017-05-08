@@ -22,6 +22,11 @@ class File extends React.Component {
 
 	render() {
 		const { file } = this.props;
+		const pdfBtn = (
+			<Button target="_blank" href={`/api/files/open_pdf/${file._id}`}>
+				Open PDF
+			</Button>
+		);
 		return (
 			<div className={`uk-card uk-card-default ${this.props.className}`}>
 				<h4 className="title">{file.title}</h4>
@@ -31,6 +36,7 @@ class File extends React.Component {
 				<TagList tags={file.tags} />
 				<div className="download-btn">
 					<Button onClick={this.downloadFile}>Download File</Button>
+					{file.fileExtension === 'pdf' ? pdfBtn : null}
 				</div>
 			</div>
 		);
