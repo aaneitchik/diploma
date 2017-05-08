@@ -12,10 +12,11 @@ const LOAD_FILES_SUCCESS = 'LOAD_FILES_SUCCESS';
 
 export default function reducer(state = INITIAL_STATE, action) {
 	switch (action.type) {
-		case LOAD_FILES_SUCCESS:
+		case LOAD_FILES_SUCCESS: {
 			const pagination = { ...action.payload };
 			delete pagination.docs;
 			return { ...state, files: action.payload.docs, pagination };
+		}
 
 		default:
 			return state;

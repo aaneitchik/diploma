@@ -1,12 +1,19 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 
-const Button = props => {
-	return (
-		<button className={`uk-button uk-button-default ${props.className}`}>
-			{props.children}
-		</button>
-	);
+const Button = props => (
+	<button {...props} className={`uk-button uk-button-default ${props.className}`}>
+		{props.children}
+	</button>
+);
+
+Button.defaultProps = {
+	className: ''
+};
+
+Button.propTypes = {
+	className: PropTypes.string
 };
 
 export default styled(Button)`

@@ -43,8 +43,13 @@ injectGlobal`
 	}
 	
 	body {
-		font-family: SourceSansPro-Regular, sans serif;
+		font-size: 14px;
+		font-family: SourceSansPro-Light, sans serif;
 		background-color: rgba(230, 242, 240, 0.4);
+	}
+	
+	.title {
+		font-family: SourceSansPro-Regular, sans serif;
 	}
 `;
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 
 import LoginForm from './login-form.component';
 
@@ -17,6 +18,20 @@ class Login extends React.Component {
 			: <LoginForm onSubmit={this.submit} />;
 	}
 }
+
+Login.defaultProps = {
+	location: {
+		pathname: ''
+	}
+};
+
+Login.propTypes = {
+	authenticated: PropTypes.bool.isRequired,
+	location: React.PropTypes.shape({
+		pathname: React.PropTypes.string.isRequired
+	}),
+	login: PropTypes.func.isRequired
+};
 
 function mapStateToProps(state) {
 	return { authenticated: state.auth.authenticated };

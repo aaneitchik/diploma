@@ -1,34 +1,43 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
+import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 
 import InputWithIcon from '../components/input-with-icon';
 
-class LoginForm extends React.Component {
-	render() {
-		const { handleSubmit } = this.props;
-		return (
-			<div
-				className={`uk-card uk-card-default uk-card-body ${this.props.className}`}
-			>
-				<form onSubmit={handleSubmit}>
+let LoginForm = props => {
+	const { handleSubmit } = props;
+	return (
+		<div
+			className={`uk-card uk-card-default uk-card-body ${props.className}`}
+		>
+			<form onSubmit={handleSubmit}>
+				<div>
 					<InputWithIcon name="email" type="email" icon="user" />
+				</div>
+				<div>
 					<InputWithIcon
 						name="password"
 						type="password"
 						icon="lock"
 					/>
-					<button
-						type="submit"
-						className="uk-button uk-button-default"
-					>
-						Log in
-					</button>
-				</form>
-			</div>
-		);
-	}
-}
+				</div>
+				<button type="submit" className="uk-button uk-button-default">
+					Log in
+				</button>
+			</form>
+		</div>
+	);
+};
+
+LoginForm.defaultProps = {
+	className: ''
+};
+
+LoginForm.propTypes = {
+	className: PropTypes.string,
+	handleSubmit: PropTypes.func.isRequired
+};
 
 LoginForm = reduxForm({
 	form: 'login'

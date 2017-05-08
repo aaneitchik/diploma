@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 
 export default function reducer(state = INITIAL_STATE, action) {
 	switch (action.type) {
-		case LOGIN_SUCCESS:
+		case LOGIN_SUCCESS: {
 			const user = action.payload.data;
 			user.availableCategories = getAvailableCategories(user);
 			return {
@@ -23,9 +23,11 @@ export default function reducer(state = INITIAL_STATE, action) {
 				authenticated: true,
 				triedLogin: true
 			};
+		}
 
-		case LOGIN_ERROR:
+		case LOGIN_ERROR: {
 			return { ...state, triedLogin: true };
+		}
 
 		default:
 			return state;
