@@ -51,6 +51,11 @@ injectGlobal`
 	.title {
 		font-family: SourceSansPro-Regular, sans serif;
 	}
+	
+	.buttons {
+		margin-top: 1rem;
+		text-align: center;
+	}
 `;
 
 ReactDOM.render(

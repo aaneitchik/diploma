@@ -7,12 +7,30 @@ import Card from '../components/card';
 import SearchForm from './search-form.component';
 
 import * as actions from './search';
+import * as shapes from '../utils/common-proptypes';
 
 class Search extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			selectedCategory: 'All'
+		};
+	}
+	onCategoryChange = selectedCategory => {
+		this.setState(prevState => ({ ...prevState, selectedCategory }));
+	};
+	submit = values => {
+		console.log(values);
+	};
 	render() {
 		return (
 			<Card className={this.props.className}>
-				<SearchForm />
+				<SearchForm
+					onSubmit={this.submit}
+					selectedCategory={this.state.selectedCategory}
+					onCategoryChange={this.onCategoryChange}
+					categories={this.props.categories}
+				/>
 			</Card>
 		);
 	}
@@ -23,11 +41,12 @@ Search.defaultProps = {
 };
 
 Search.propTypes = {
-	className: PropTypes.string
+	className: PropTypes.string,
+	categories: PropTypes.arrayOf(shapes.categoryShape).isRequired
 };
 
 function mapStateToProps(state) {
-	return state;
+	return { categories: state.sidebar.categories };
 }
 
 export default connect(mapStateToProps, actions)(styled(Search)`

@@ -55,6 +55,14 @@ export default function reducer(state = INITIAL_STATE, action) {
 export function getCategories() {
 	return dispatch => {
 		axios.get(`${ROOT_URL}/categories`).then(response => {
+			response.data.forEach(category => {
+				// eslint-disable-next-line no-param-reassign
+				category.subcategories = category.subcategories.map(
+					subcategory => ({
+						name: subcategory
+					})
+				);
+			});
 			dispatch({ type: LOAD_CATEGORIES, payload: response.data });
 		});
 	};

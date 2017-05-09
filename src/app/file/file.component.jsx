@@ -71,11 +71,6 @@ const styledFile = styled(File)`
 		margin-top: 0;
 		color: ${props => props.theme.secondaryTextColor};
 	}
-	
-	.buttons {
-		margin-top: 1rem;
-		text-align: center;
-	}
 `;
 
 export default connect(mapStateToProps, fileActions)(styledFile);
