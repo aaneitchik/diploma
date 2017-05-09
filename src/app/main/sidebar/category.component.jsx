@@ -12,10 +12,9 @@ class Category extends React.Component {
 	render() {
 		const { category, onSubcategoryClick } = this.props;
 		const subcategories = category.active
-			? category.subcategories.map((subcategory, index) => (
+			? category.subcategories.map((subcategory) => (
 					<Subcategory
 						key={subcategory}
-						index={index}
 						subcategory={subcategory}
 						onSubcategoryClick={onSubcategoryClick}
 					/>

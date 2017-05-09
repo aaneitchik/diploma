@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 class Subcategory extends React.Component {
 	onClick = () => {
-		this.props.onSubcategoryClick(this.props.index);
+		this.props.onSubcategoryClick(this.props.subcategory);
 	};
 	render() {
 		const { className, subcategory } = this.props;
@@ -24,7 +24,6 @@ Subcategory.defaultProps = {
 
 Subcategory.propTypes = {
 	className: PropTypes.string,
-	index: PropTypes.number.isRequired,
 	onSubcategoryClick: PropTypes.func.isRequired,
 	subcategory: PropTypes.string.isRequired
 };

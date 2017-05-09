@@ -13,6 +13,7 @@ const INITIAL_STATE = {
 
 const LOAD_CATEGORIES = 'sidebar/LOAD_CATEGORIES';
 export const TOGGLE_CATEGORY = 'sidebar/TOGGLE_CATEGORY';
+export const TOGGLE_SUBCATEGORY = 'sidebar/TOGGLE_SUBCATEGORY';
 
 export default function reducer(state = INITIAL_STATE, action) {
 	switch (action.type) {
@@ -31,14 +32,19 @@ export default function reducer(state = INITIAL_STATE, action) {
 			const categories = state.categories.map(
 				(category, index) =>
 					index === categoryIndex
-						? { ...category, active: !category.active }
+						? { ...category, active: true }
 						: { ...category, active: false }
 			);
 			return {
 				...state,
 				categories,
-				selectedCategory: { ...selectedCategory }
+				selectedCategory: { ...selectedCategory },
+				selectedSubcategory: 'All'
 			};
+		}
+
+		case TOGGLE_SUBCATEGORY: {
+			return { ...state, selectedSubcategory: action.payload };
 		}
 
 		default:
@@ -63,9 +69,7 @@ export function toggleCategory(categoryIndex, selectedCategory, pagination) {
 		const paginationParams = Object.assign(
 			{ ...pagination },
 			{
-				category: selectedCategory.active
-					? 'All'
-					: selectedCategory.name
+				category: selectedCategory.name
 			}
 		);
 		return dispatch(getFilesByPage(paginationParams));
@@ -86,4 +90,13 @@ export function selectAll(pagination) {
 	};
 }
 
-export function selectSubcategory() {}
+export function selectSubcategory(subcategory, pagination) {
+	return dispatch => {
+		dispatch({ type: TOGGLE_SUBCATEGORY, payload: subcategory });
+		const paginationParams = Object.assign(
+			{ ...pagination },
+			{ subcategory }
+		);
+		return dispatch(getFilesByPage(paginationParams));
+	};
+}

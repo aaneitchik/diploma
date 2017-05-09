@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { TOGGLE_CATEGORY } from '../main/sidebar/sidebar';
+import { TOGGLE_CATEGORY, TOGGLE_SUBCATEGORY } from '../main/sidebar/sidebar';
 import { LOGIN_SUCCESS } from '../auth/auth';
 
 const ROOT_URL = '/api/files';
@@ -41,7 +41,7 @@ export default function reducer(state = INITIAL_STATE, action) {
 
 		case TOGGLE_CATEGORY: {
 			const pagination = { ...state.pagination };
-			const selectedCategory = { ...action.payload };
+			const selectedCategory = { ...action.payload.selectedCategory };
 			if (selectedCategory === 'All') {
 				return {
 					...state,
@@ -54,7 +54,20 @@ export default function reducer(state = INITIAL_STATE, action) {
 			}
 			return {
 				...state,
-				pagination: { ...pagination, category: selectedCategory.name }
+				pagination: {
+					...pagination,
+					category: selectedCategory.name,
+					subcategory: 'All'
+				}
+			};
+		}
+
+		case TOGGLE_SUBCATEGORY: {
+			const pagination = { ...state.pagination };
+			return {
+				...state,
+				pagination,
+				subcategory: action.payload
 			};
 		}
 

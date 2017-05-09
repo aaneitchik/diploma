@@ -25,8 +25,8 @@ class Sidebar extends React.Component {
 			this.props.pagination
 		);
 	};
-	onSubcategoryClick = subcategoryIndex => {
-		this.props.selectSubcategory(subcategoryIndex);
+	onSubcategoryClick = subcategory => {
+		this.props.selectSubcategory(subcategory, this.props.pagination);
 	};
 	selectAll = () => {
 		this.props.selectAll(this.props.pagination);
@@ -61,14 +61,15 @@ Sidebar.defaultProps = {
 };
 
 Sidebar.propTypes = {
-	categories: PropTypes.arrayOf(
-		shapes.categoryShape
-	).isRequired,
+	categories: PropTypes.arrayOf(shapes.categoryShape).isRequired,
 	className: PropTypes.string,
 	getCategories: PropTypes.func.isRequired,
 	pagination: shapes.paginationShape.isRequired,
 	selectAll: PropTypes.func.isRequired,
-	selectedCategory: PropTypes.oneOfType([PropTypes.string, shapes.categoryShape]).isRequired,
+	selectedCategory: PropTypes.oneOfType([
+		PropTypes.string,
+		shapes.categoryShape
+	]).isRequired,
 	selectSubcategory: PropTypes.func.isRequired,
 	toggleCategory: PropTypes.func.isRequired
 };
@@ -108,6 +109,10 @@ export default connect(mapStateToProps, {
 	
 	.category.active {
 		color: ${props => props.theme.darkPrimaryColor} !important;
+	}
+	
+	.subcategory:hover {
+		color: ${props => props.theme.primaryColor} !important;
 	}
 	`
 );
