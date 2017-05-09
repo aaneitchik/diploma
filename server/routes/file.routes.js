@@ -2,10 +2,29 @@ const express = require('express');
 const passport = require('passport');
 
 const fileCtrl = require('../controllers/file.controller');
+const categoryCtrl = require('../controllers/category.controller');
 const isLoggedIn = require('../middleware/is-logged-in');
 
 const fileRouter = express.Router();
 require('../../config/passport')(passport);
+
+// download file
+fileRouter.route('/download/:id').get(isLoggedIn, (req, res) => {
+	const id = req.params.id;
+	return fileCtrl.downloadFile(res, id);
+});
+
+// open pdf
+fileRouter.route('/open_pdf/:id').get(isLoggedIn, (req, res) => {
+	const id = req.params.id;
+	const pdfFile = true;
+	return fileCtrl.downloadFile(res, id, pdfFile);
+});
+
+// get all categories
+fileRouter
+	.route('/categories')
+	.get(isLoggedIn, (req, res) => categoryCtrl.getAllCategories(res));
 
 // get file by id
 fileRouter.route('/:id').get(isLoggedIn, (req, res) => {
@@ -32,19 +51,5 @@ fileRouter.route('').post(isLoggedIn, (req, res) => {
 		availableCategories
 	);
 });
-
-// download file
-fileRouter.route('/download/:id').get(isLoggedIn, (req, res) => {
-	const id = req.params.id;
-	return fileCtrl.downloadFile(res, id);
-});
-
-// open pdf
-fileRouter.route('/open_pdf/:id')
-	.get(isLoggedIn, (req, res) => {
-		const id = req.params.id;
-		const pdfFile = true;
-		return fileCtrl.downloadFile(res, id, pdfFile);
-	});
 
 module.exports = fileRouter;

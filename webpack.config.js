@@ -27,7 +27,7 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	plugins,
-	devtool: 'eval-source-map',
+	devtool: 'inline-eval-cheap-source-map',
 	resolve: {
 		extensions: ['.js', '.jsx']
 	},

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 
 import { loginWithCookies } from './auth';
 import Loading from '../utils/loading.component';
@@ -28,6 +29,12 @@ export default function(ComposedComponent) {
 			);
 		}
 	}
+
+	Authentication.propTypes = {
+		authenticated: PropTypes.bool.isRequired,
+		loginWithCookies: PropTypes.func.isRequired,
+		triedLogin: PropTypes.bool.isRequired
+	};
 
 	function mapStateToProps(state) {
 		return {

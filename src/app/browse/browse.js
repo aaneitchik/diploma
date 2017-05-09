@@ -1,21 +1,61 @@
 import axios from 'axios';
 
+import { TOGGLE_CATEGORY } from '../main/sidebar/sidebar';
+import { LOGIN_SUCCESS } from '../auth/auth';
+
 const ROOT_URL = '/api/files';
 
 const INITIAL_STATE = {
 	files: [],
-	pagination: {}
+	pagination: {
+		pageSize: 10,
+		category: 'All',
+		subcategory: 'All',
+		availableCategories: []
+	}
 };
 
-const ERROR = 'ERROR';
-const LOAD_FILES_SUCCESS = 'LOAD_FILES_SUCCESS';
+const ERROR = 'browse/ERROR';
+const LOAD_FILES_SUCCESS = 'browse/LOAD_FILES_SUCCESS';
 
 export default function reducer(state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case LOAD_FILES_SUCCESS: {
-			const pagination = { ...action.payload };
+			const pagination = Object.assign(
+				{ ...state.pagination },
+				action.payload
+			);
 			delete pagination.docs;
 			return { ...state, files: action.payload.docs, pagination };
+		}
+
+		case LOGIN_SUCCESS: {
+			const availableCategories = [
+				...action.payload.data.availableCategories
+			];
+			return {
+				...state,
+				pagination: { ...state.pagination, availableCategories }
+			};
+		}
+
+		case TOGGLE_CATEGORY: {
+			const pagination = { ...state.pagination };
+			const selectedCategory = { ...action.payload };
+			if (selectedCategory === 'All') {
+				return {
+					...state,
+					pagination: {
+						...pagination,
+						category: 'All',
+						subcategory: 'All'
+					}
+				};
+			}
+			return {
+				...state,
+				pagination: { ...pagination, category: selectedCategory.name }
+			};
 		}
 
 		default:
@@ -26,7 +66,6 @@ export default function reducer(state = INITIAL_STATE, action) {
 export function getFilesByPage(paginationParams) {
 	const defaultParams = {
 		pageNumber: 1,
-		pageSize: 10,
 		category: 'All',
 		subcategory: 'All'
 	};

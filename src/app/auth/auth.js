@@ -3,8 +3,8 @@ import { union, flattenDeep } from 'lodash';
 
 const ROOT_URL = '/api/';
 
-const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS';
+const LOGIN_ERROR = 'auth/LOGIN_ERROR';
 
 const INITIAL_STATE = {
 	authenticated: false,

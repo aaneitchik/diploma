@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import * as fileActions from './file';
 
 import Button from '../components/button';
+import Card from '../components/card';
 import TagList from '../components/tag-list';
 
 class File extends React.Component {
@@ -28,17 +29,17 @@ class File extends React.Component {
 			</Button>
 		);
 		return (
-			<div className={`uk-card uk-card-default ${this.props.className}`}>
+			<Card className={this.props.className}>
 				<h4 className="title">{file.title}</h4>
 				<h5 className="author">{file.author}</h5>
 				<p>{file.shortDescription}</p>
 				<p>{file.description}</p>
 				<TagList tags={file.tags} />
-				<div className="download-btn">
+				<div className="buttons">
 					<Button onClick={this.downloadFile}>Download File</Button>
 					{file.fileExtension === 'pdf' ? pdfBtn : null}
 				</div>
-			</div>
+			</Card>
 		);
 	}
 }
@@ -49,6 +50,7 @@ File.defaultProps = {
 
 File.propTypes = {
 	className: PropTypes.string,
+	downloadFile: PropTypes.func.isRequired,
 	getFileById: PropTypes.func.isRequired
 };
 
@@ -57,8 +59,6 @@ function mapStateToProps(state) {
 }
 
 const styledFile = styled(File)`
-	padding: 1.5rem;
-	
 	.title {
 		margin-bottom: 0.5rem;
 		font-weight: bold;
@@ -70,7 +70,7 @@ const styledFile = styled(File)`
 		color: ${props => props.theme.secondaryTextColor};
 	}
 	
-	.download-btn {
+	.buttons {
 		margin-top: 1rem;
 		text-align: center;
 	}

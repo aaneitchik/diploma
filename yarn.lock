@@ -1216,7 +1216,7 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@^2.2.5:
+classnames@^2.2.4, classnames@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -4357,6 +4357,10 @@ react-dom@^15.5.3:
     object-assign "^4.1.0"
     prop-types "~15.5.7"
 
+react-input-autosize@^1.1.0:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-1.1.3.tgz#ced3acd0f237cc04a1475c9207d4da1b7c0a0c86"
+
 react-paginate@^4.3.1:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/react-paginate/-/react-paginate-4.4.2.tgz#ca1a34c518b99f171e04234b5c62f4ac98568d40"
@@ -4398,6 +4402,13 @@ react-router@^4.1.1:
     path-to-regexp "^1.5.3"
     prop-types "^15.5.4"
     warning "^3.0.0"
+
+react-select@^1.0.0-rc.3:
+  version "1.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/react-select/-/react-select-1.0.0-rc.3.tgz#94ade090522153067eff09282d0525249ea1d9e3"
+  dependencies:
+    classnames "^2.2.4"
+    react-input-autosize "^1.1.0"
 
 react@^15.0.0, react@^15.5.3:
   version "15.5.4"
@@ -5322,7 +5333,7 @@ uid-safe@~2.1.4:
   dependencies:
     random-bytes "~1.0.0"
 
-uikit@^3.0.0-beta.21:
+uikit@^3.0.0-beta.22:
   version "3.0.0-beta.22"
   resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.0.0-beta.22.tgz#8a0503d792751f27b22b4ce45da76131f0cc27d4"
 
