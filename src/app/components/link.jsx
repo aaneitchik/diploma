@@ -1,14 +1,5 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-// const Link = props => {
-// 	return (
-// 		<a href={props.href} className={props.className}>
-// 			{props.children}
-// 		</a>
-// 	);
-// };
 
 export default styled(Link)`
 	margin: 0 0.5rem;

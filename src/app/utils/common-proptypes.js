@@ -14,3 +14,14 @@ export const paginationShape = PropTypes.shape({
 	subcategory: PropTypes.string,
 	allowedCategories: PropTypes.arrayOf(PropTypes.string)
 });
+
+export const fileShape = PropTypes.shape({
+	_id: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	author: PropTypes.string.isRequired,
+	shortDescription: PropTypes.string.isRequired,
+	description: PropTypes.string.isRequired,
+	tags: PropTypes.arrayOf(PropTypes.string),
+	filename: PropTypes.string.isRequired,
+	fileExtension: PropTypes.string
+});

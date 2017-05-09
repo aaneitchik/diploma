@@ -4,6 +4,7 @@ import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 
 import * as fileActions from './file';
+import { fileShape } from '../utils/common-proptypes';
 
 import Button from '../components/button';
 import Card from '../components/card';
@@ -51,6 +52,7 @@ File.defaultProps = {
 File.propTypes = {
 	className: PropTypes.string,
 	downloadFile: PropTypes.func.isRequired,
+	file: fileShape,
 	getFileById: PropTypes.func.isRequired
 };
 

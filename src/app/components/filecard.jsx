@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
+
+import { fileShape } from '../utils/common-proptypes';
 
 import FileIcon from './file-icon';
 import TagList from './tag-list';
@@ -25,6 +28,15 @@ const Filecard = props => {
 			</div>
 		</Link>
 	);
+};
+
+Filecard.defaultProps = {
+	className: ''
+};
+
+Filecard.propTypes = {
+	className: PropTypes.string,
+	file: fileShape.isRequired
 };
 
 export default styled(Filecard)`
