@@ -4,12 +4,14 @@ const webpack = require('webpack');
 const DEVELOPMENT = process.env.NODE_ENV === 'development';
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
+const ports = require('./config/ports');
+
 const entry = PRODUCTION
 	? './src/index.js'
 	: [
 			'./src/index.jsx',
 			'webpack/hot/dev-server',
-			'webpack-dev-server/client?http://localhost:3000'
+			`webpack-dev-server/client?http://localhost:${ports.ui}`
 		];
 
 const plugins = PRODUCTION

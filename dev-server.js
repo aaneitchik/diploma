@@ -12,10 +12,12 @@ const server = new WebpackDevServer(compiler, {
 	stats: {
 		color: true
 	},
-	proxy: [{
-		path: '/api/**/*',
-		target: `http://${ip}:${ports.server}`
-	}],
+	proxy: [
+		{
+			path: '/api/**/*',
+			target: `http://${ip}:${ports.server}`
+		}
+	],
 	historyApiFallback: true
 });
 
