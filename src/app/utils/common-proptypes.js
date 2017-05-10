@@ -20,13 +20,13 @@ export const paginationShape = PropTypes.shape({
 });
 
 export const fileShape = PropTypes.shape({
-	_id: PropTypes.string.isRequired,
-	title: PropTypes.string.isRequired,
-	author: PropTypes.string.isRequired,
-	shortDescription: PropTypes.string.isRequired,
-	description: PropTypes.string.isRequired,
+	_id: PropTypes.string,
+	title: PropTypes.string,
+	author: PropTypes.string,
+	shortDescription: PropTypes.string,
+	description: PropTypes.string,
 	tags: PropTypes.arrayOf(PropTypes.string),
-	filename: PropTypes.string.isRequired,
+	filename: PropTypes.string,
 	fileExtension: PropTypes.string
 });
 
