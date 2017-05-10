@@ -41,7 +41,7 @@ let SearchForm = props => {
 				valueKey="name"
 				onChange={props.onCategoryChange}
 			/>
-			{props.selectedCategory === 'All'
+			{!props.selectedCategory.name
 				? null
 				: <InputWithLabel
 						name="subcategory"

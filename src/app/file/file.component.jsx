@@ -52,7 +52,7 @@ File.defaultProps = {
 File.propTypes = {
 	className: PropTypes.string,
 	downloadFile: PropTypes.func.isRequired,
-	file: fileShape,
+	file: fileShape.isRequired,
 	getFileById: PropTypes.func.isRequired
 };
 

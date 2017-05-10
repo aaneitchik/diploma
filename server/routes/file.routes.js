@@ -26,6 +26,12 @@ fileRouter
 	.route('/categories')
 	.get(isLoggedIn, (req, res) => categoryCtrl.getAllCategories(res));
 
+// find files by query
+fileRouter.route('/find').post(isLoggedIn, (req, res) => {
+	const query = req.body;
+	return fileCtrl.findFiles(res, query);
+});
+
 // get file by id
 fileRouter.route('/:id').get(isLoggedIn, (req, res) => {
 	const { id } = req.params;
