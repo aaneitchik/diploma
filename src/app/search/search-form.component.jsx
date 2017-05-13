@@ -8,6 +8,7 @@ import { categoryShape } from '../utils/common-proptypes';
 import Button from '../components/button';
 import InputWithLabel from '../components/input-with-label';
 import SelectDropdown from '../components/select-dropdown';
+import TagInput from '../components/tag-input';
 
 let SearchForm = props => {
 	const { handleSubmit } = props;
@@ -52,6 +53,12 @@ let SearchForm = props => {
 						labelKey="name"
 						valueKey="name"
 					/>}
+			<InputWithLabel
+				name="tags"
+				label="Tags"
+				className="uk-width-1-1 uk-margin"
+				component={TagInput}
+			/>
 			<div className="buttons uk-width-1-1">
 				<Button type="submit">Search</Button>
 			</div>
@@ -73,7 +80,8 @@ SearchForm.propTypes = {
 };
 
 SearchForm = reduxForm({
-	form: 'search'
+	form: 'search',
+	initialValues: { tags: [] }
 })(SearchForm);
 
 export default styled(SearchForm)`

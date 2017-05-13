@@ -218,6 +218,10 @@ function constructSearchQuery(searchQuery) {
 			}
 			return;
 		}
+		if (key === 'tags') {
+			query.tags = { $all: searchQuery.tags };
+			return;
+		}
 		if (
 			!(!searchQuery[key] ||
 				searchQuery[key] === '0' ||

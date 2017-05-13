@@ -4410,6 +4410,10 @@ react-select@^1.0.0-rc.3:
     classnames "^2.2.4"
     react-input-autosize "^1.1.0"
 
+react-tagging-input@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-tagging-input/-/react-tagging-input-2.0.0.tgz#af86f313c72e9913f18d09750ecd390dab917dcb"
+
 react@^15.0.0, react@^15.5.3:
   version "15.5.4"
   resolved "https://registry.yarnpkg.com/react/-/react-15.5.4.tgz#fa83eb01506ab237cdc1c8c3b1cea8de012bf047"
