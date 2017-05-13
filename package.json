@@ -2,7 +2,7 @@
 	"name": "diploma",
 	"version": "1.0.0",
 	"description": "Course project, rewritten in React for a diploma",
-	"main": "app.js",
+	"main": "server/server.js",
 	"author": "aaneitchik",
 	"license": "MIT",
 	"scripts": {
