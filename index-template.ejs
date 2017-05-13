@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BSU Lib</title>
+	   <!-- begin CSS files from webpack -->
+      <% for (var css in htmlWebpackPlugin.files.css) { %>
+      <link href="<%=htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+      <% } %>
+      <!-- end   CSS files from webpack -->
+      <!-- begin JS files from webpack -->
+
+      <script src="<%=htmlWebpackPlugin.files.chunks['vendor'].entry %>"></script>
+
+     <!-- end   JS files from webpack -->
+</head>
+<body>
+<div id="app-container"></div>
+<script src="<%=htmlWebpackPlugin.files.chunks['app'].entry %>"></script>
+</body>
+</html>

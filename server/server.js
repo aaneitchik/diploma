@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -30,6 +31,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static(path.join(__dirname, '..', 'dist')));
 app.use(flash());
 
 const fileRouter = require('./routes/file.routes');
