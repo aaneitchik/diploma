@@ -161,3 +161,4 @@ typings/
 # Sonarlint plugin
 
 # End of https://www.gitignore.io/api/node,webstorm,intellij
+db/

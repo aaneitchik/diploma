@@ -39,6 +39,7 @@ const authRouter = require('./routes/auth.routes');
 
 app.use('/api/files', fileRouter);
 app.use('/api', authRouter);
+app.use('/*', express.static(path.join(__dirname, '..', 'dist', 'index.html')));
 
 app.listen(ports.server, () => {
 	console.log(`Running on PORT ${ports.server}`);
