@@ -1,5 +1,5 @@
 const ports = {
-	server: 8000,
+	server: process.env.PORT || 8000,
 	ui: 3002
 };
 
