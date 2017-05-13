@@ -47,7 +47,7 @@ class Sidebar extends React.Component {
 					className={`category ${this.props.selectedCategory === 'All' ? 'active' : ''}`}
 					onClick={this.selectAll}
 				>
-					All
+					Все
 				</a>
 				<hr className="divider" />
 				<ul className="categories">{categories}</ul>

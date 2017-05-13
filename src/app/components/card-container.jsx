@@ -12,7 +12,7 @@ const CardContainer = props => {
 	));
 	return (
 		<div className={props.className}>
-			{cards.length === 0 ? 'No files found' : cards}
+			{cards.length === 0 ? 'Файлы не найдены' : cards}
 		</div>
 	);
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 
 import Link from '../../components/link';
@@ -6,22 +7,26 @@ import Button from '../../components/button';
 import Icon from '../../components/icon';
 import SidebarToggle from '../sidebar/sidebar-toggle';
 
-class TopNavigation extends React.Component {
-	render = () => {
-		return (
-			<div className={this.props.className}>
-				<div className="col"><SidebarToggle target="#offcanvas" /></div>
-				<div className="col">
-					<Link to="/" className="logo">BSU Lib</Link>
-				</div>
-				<div className="col">
-					<Link to="/search"><Icon type="search" /></Link>
-					<Button>Load File</Button>
-				</div>
-			</div>
-		);
-	};
-}
+const TopNavigation = props => (
+	<div className={props.className}>
+		<div className="col"><SidebarToggle target="#offcanvas" /></div>
+		<div className="col">
+			<Link to="/" className="logo">Библиотека БГУ</Link>
+		</div>
+		<div className="col">
+			<Link to="/search"><Icon type="search" /></Link>
+			<Link to="/file/load"><Button>Загрузить документ</Button></Link>
+		</div>
+	</div>
+);
+
+TopNavigation.defaultProps = {
+	className: ''
+};
+
+TopNavigation.propTypes = {
+	className: PropTypes.string
+};
 
 export default styled(TopNavigation)`
 	display: flex;

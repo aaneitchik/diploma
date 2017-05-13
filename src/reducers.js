@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import { reducer as toastrReducer } from 'react-redux-toastr';
 
 import AuthReducer from './app/auth/auth';
 import BrowseReducer from './app/browse/browse';
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
 	file: FileReducer,
 	form: formReducer,
 	search: SearchReducer,
-	sidebar: SidebarReducer
+	sidebar: SidebarReducer,
+	toastr: toastrReducer
 });
 
 export default rootReducer;

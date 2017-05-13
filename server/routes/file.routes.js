@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+const multer = require('multer');
 
 const fileCtrl = require('../controllers/file.controller');
 const categoryCtrl = require('../controllers/category.controller');
@@ -7,6 +8,17 @@ const isLoggedIn = require('../middleware/is-logged-in');
 
 const fileRouter = express.Router();
 require('../../config/passport')(passport);
+
+const storageConfig = require('../../config/storage');
+
+const upload = multer({ storage: storageConfig });
+
+// load file to the lib
+fileRouter.post('/upload', upload.single('file'), (req, res) => {
+	const fileInfo = JSON.parse(req.body.fileInfo);
+	const file = req.file;
+	return fileCtrl.addFile(res, fileInfo, file);
+});
 
 // download file
 fileRouter.route('/download/:id').get(isLoggedIn, (req, res) => {

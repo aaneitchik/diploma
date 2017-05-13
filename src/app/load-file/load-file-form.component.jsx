@@ -1,41 +1,54 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { PropTypes } from 'prop-types';
-import styled from 'styled-components';
-
-import { categoryShape } from '../utils/common-proptypes';
 
 import Button from '../components/button';
+import Card from '../components/card';
 import InputWithLabel from '../components/input-with-label';
 import SelectDropdown from '../components/select-dropdown';
 import TagInput from '../components/tag-input';
 
-let SearchForm = props => {
-	const { handleSubmit } = props;
-	return (
+import { categoryShape } from '../utils/common-proptypes';
+
+const LoadFileForm = props => (
+	<Card>
 		<form
-			onSubmit={handleSubmit}
-			className={`uk-grid-small ${props.className}`}
+			onSubmit={props.handleSubmit}
+			className="uk-grid-small"
 			data-uk-grid
 		>
 			<InputWithLabel
-				className="uk-width-1-2"
-				component="input"
 				label="Название"
 				name="title"
+				className="uk-width-1-1"
+				component="input"
 				type="text"
 			/>
 			<InputWithLabel
-				className="uk-width-1-2"
-				component="input"
 				label="Автор"
 				name="author"
+				className="uk-width-1-2"
+				component="input"
+				type="text"
+			/>
+			<InputWithLabel
+				label="Краткое описание"
+				name="shortDescription"
+				className="uk-width-1-1"
+				component="textarea"
+				type="text"
+			/>
+			<InputWithLabel
+				label="Полное описание"
+				name="description"
+				className="uk-width-1-1"
+				component="textarea"
 				type="text"
 			/>
 			<InputWithLabel
 				name="category"
 				label="Категория"
-				className="uk-width-1-2 uk-margin"
+				className="uk-width-1-2"
 				component={SelectDropdown}
 				options={props.categories}
 				labelKey="name"
@@ -47,7 +60,7 @@ let SearchForm = props => {
 				: <InputWithLabel
 						name="subcategory"
 						label="Подкатегория"
-						className="uk-width-1-2 uk-margin"
+						className="uk-width-1-2"
 						component={SelectDropdown}
 						options={props.selectedCategory.subcategories}
 						labelKey="name"
@@ -56,34 +69,24 @@ let SearchForm = props => {
 			<InputWithLabel
 				name="tags"
 				label="Теги"
-				className="uk-width-1-1 uk-margin"
+				className="uk-width-1-1"
 				component={TagInput}
 			/>
 			<div className="buttons uk-width-1-1">
-				<Button type="submit">Найти</Button>
+				<Button type="submit">Загрузить документ</Button>
 			</div>
 		</form>
-	);
-};
+	</Card>
+);
 
-SearchForm.defaultProps = {
-	className: '',
-	selectedCategory: 'All'
-};
-
-SearchForm.propTypes = {
-	className: PropTypes.string,
-	categories: PropTypes.arrayOf(categoryShape).isRequired,
+LoadFileForm.propTypes = {
 	handleSubmit: PropTypes.func.isRequired,
+	categories: PropTypes.arrayOf(categoryShape).isRequired,
 	onCategoryChange: PropTypes.func.isRequired,
-	selectedCategory: categoryShape
+	selectedCategory: categoryShape.isRequired
 };
 
-SearchForm = reduxForm({
-	form: 'search',
+export default reduxForm({
+	form: 'load-file',
 	initialValues: { tags: [] }
-})(SearchForm);
-
-export default styled(SearchForm)`
-	
-`;
+})(LoadFileForm);
