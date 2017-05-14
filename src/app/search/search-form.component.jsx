@@ -41,6 +41,7 @@ let SearchForm = props => {
 				labelKey="name"
 				valueKey="name"
 				onChange={props.onCategoryChange}
+				placeholder="Выбраны все категории"
 			/>
 			{!props.selectedCategory.name
 				? null
@@ -52,6 +53,7 @@ let SearchForm = props => {
 						options={props.selectedCategory.subcategories}
 						labelKey="name"
 						valueKey="name"
+						placeholder="Выбраны все подкатегории"
 					/>}
 			<InputWithLabel
 				name="tags"

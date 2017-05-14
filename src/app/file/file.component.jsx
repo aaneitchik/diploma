@@ -29,7 +29,7 @@ class File extends React.Component {
 		const { file, videoFile, downloadLink } = this.props;
 		const pdfBtn = (
 			<Button target="_blank" href={`/api/files/open_pdf/${file._id}`}>
-				Open PDF
+				Просмотр PDF
 			</Button>
 		);
 		return (
@@ -57,7 +57,7 @@ class File extends React.Component {
 				<p>{file.description}</p>
 				<TagList tags={file.tags} />
 				<div className="buttons">
-					<Button onClick={this.downloadFile}>Download File</Button>
+					<Button onClick={this.downloadFile}>Скачать файл</Button>
 					{file.fileExtension === 'pdf' ? pdfBtn : null}
 				</div>
 			</Card>

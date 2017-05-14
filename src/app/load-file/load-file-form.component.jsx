@@ -54,6 +54,7 @@ const LoadFileForm = props => (
 				labelKey="name"
 				valueKey="name"
 				onChange={props.onCategoryChange}
+			    placeholder="Выберите категорию"
 			/>
 			{!props.selectedCategory.name
 				? null
@@ -65,6 +66,7 @@ const LoadFileForm = props => (
 						options={props.selectedCategory.subcategories}
 						labelKey="name"
 						valueKey="name"
+				        placeholder="Выберите подкатегорию"
 					/>}
 			<InputWithLabel
 				name="tags"

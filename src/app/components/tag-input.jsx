@@ -20,6 +20,7 @@ class TagInput extends React.Component {
 				uniqueTags
 				onAdded={this.addTag}
 				onRemoved={this.removeTag}
+				placeholder="Добавьте тег"
 			/>
 		);
 	}

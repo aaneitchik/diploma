@@ -23,7 +23,7 @@ let LoginForm = props => {
 					/>
 				</div>
 				<button type="submit" className="uk-button uk-button-default">
-					Log in
+					Войти
 				</button>
 			</form>
 		</div>
