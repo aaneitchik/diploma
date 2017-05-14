@@ -5,18 +5,27 @@ const ROOT_URL = '/api/files';
 const INITIAL_STATE = {
 	current: {
 		tags: []
-	}
+	},
+	downloadLink: '',
+	videoFile: false
 };
 
 const LOAD_FILE_SUCCESS = 'LOAD_FILE_SUCCESS';
 const LOAD_FILE_ERROR = 'LOAD_FILE_ERROR';
 
+const videoExtensions = ['mp4', 'avi', 'mkv'];
+
 /* global window, document */
 
 export default function reducer(state = INITIAL_STATE, action) {
 	switch (action.type) {
-		case LOAD_FILE_SUCCESS:
-			return { ...state, current: action.payload };
+		case LOAD_FILE_SUCCESS: {
+			const file = action.payload;
+			const videoFile =
+				videoExtensions.indexOf(file.fileExtension) !== -1;
+			const downloadLink = getDownloadLink(file);
+			return { ...state, current: file, videoFile, downloadLink };
+		}
 
 		default:
 			return state;
@@ -38,7 +47,7 @@ export function getFileById(fileId) {
 
 export function downloadFile(fileId, filename) {
 	return () => {
-		const downloadLink = `${window.location.origin}${ROOT_URL}/download/${fileId}`;
+		const downloadLink = `${window.location.origin}${ROOT_URL}/download/${fileId}`;;
 		const tempLink = document.createElement('a');
 		tempLink.href = downloadLink;
 		tempLink.setAttribute('download', filename);
@@ -47,4 +56,8 @@ export function downloadFile(fileId, filename) {
 		tempLink.click();
 		document.body.removeChild(tempLink);
 	};
+}
+
+function getDownloadLink(file) {
+	return `${window.location.origin}/uploads/${file.filename}`;
 }

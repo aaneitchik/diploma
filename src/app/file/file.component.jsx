@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { DefaultPlayer as Video } from 'react-html5video';
 import styled from 'styled-components';
+
+import 'react-html5video/dist/styles.css';
 
 import * as fileActions from './file';
 import { fileShape } from '../utils/common-proptypes';
@@ -23,7 +26,7 @@ class File extends React.Component {
 	};
 
 	render() {
-		const { file } = this.props;
+		const { file, videoFile, downloadLink } = this.props;
 		const pdfBtn = (
 			<Button target="_blank" href={`/api/files/open_pdf/${file._id}`}>
 				Open PDF
@@ -33,6 +36,23 @@ class File extends React.Component {
 			<Card className={this.props.className}>
 				<h4 className="title">{file.title}</h4>
 				<h5 className="author">{file.author}</h5>
+				{videoFile
+					? <Video
+							autoPlay
+							controls={[
+								'PlayPause',
+								'Seek',
+								'Time',
+								'Volume',
+								'Fullscreen'
+							]}
+						>
+							<source
+								src={downloadLink}
+								type={`video/${file.fileExtension}`}
+							/>
+						</Video>
+					: null}
 				<p>{file.shortDescription}</p>
 				<p>{file.description}</p>
 				<TagList tags={file.tags} />
@@ -52,12 +72,18 @@ File.defaultProps = {
 File.propTypes = {
 	className: PropTypes.string,
 	downloadFile: PropTypes.func.isRequired,
+	downloadLink: PropTypes.string.isRequired,
 	file: fileShape.isRequired,
-	getFileById: PropTypes.func.isRequired
+	getFileById: PropTypes.func.isRequired,
+	videoFile: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
-	return { file: state.file.current };
+	return {
+		file: state.file.current,
+		videoFile: state.file.videoFile,
+		downloadLink: state.file.downloadLink
+	};
 }
 
 const styledFile = styled(File)`
