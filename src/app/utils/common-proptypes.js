@@ -1,5 +1,9 @@
 import { PropTypes } from 'prop-types';
 
+export const locationShape = PropTypes.shape({
+	pathname: PropTypes.string
+});
+
 export const subcategoryShape = PropTypes.shape({
 	name: PropTypes.string
 });

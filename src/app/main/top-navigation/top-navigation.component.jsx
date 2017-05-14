@@ -9,7 +9,11 @@ import SidebarToggle from '../sidebar/sidebar-toggle';
 
 const TopNavigation = props => (
 	<div className={props.className}>
-		<div className="col"><SidebarToggle target="#offcanvas" /></div>
+		<div className="col">
+			{props.location === '/'
+				? <SidebarToggle target="#offcanvas" />
+				: null}
+		</div>
 		<div className="col">
 			<Link to="/" className="logo">Библиотека БГУ</Link>
 		</div>
@@ -25,7 +29,8 @@ TopNavigation.defaultProps = {
 };
 
 TopNavigation.propTypes = {
-	className: PropTypes.string
+	className: PropTypes.string,
+	location: PropTypes.string.isRequired
 };
 
 export default styled(TopNavigation)`

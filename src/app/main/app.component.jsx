@@ -6,8 +6,10 @@ import TopNavigation from './top-navigation/top-navigation.component';
 import MainContainer from './main-container/main-container.component';
 import Sidebar from './sidebar/sidebar.component';
 
+import { locationShape } from '../utils/common-proptypes';
+
 class App extends React.Component {
-    state = {
+	state = {
 		drawerActive: false
 	};
 	toggleDrawer = () => {
@@ -18,7 +20,10 @@ class App extends React.Component {
 			data-uk-height-viewport
 			className={`uk-offcanvas-content ${this.props.className}`}
 		>
-			<TopNavigation toggleDrawer={this.toggleDrawer} />
+			<TopNavigation
+				location={this.props.location.pathname}
+				toggleDrawer={this.toggleDrawer}
+			/>
 			<MainContainer data-uk-height-viewport="offset-top: true" />
 			<div id="offcanvas" data-uk-offcanvas="overlay: true">
 				<Sidebar className={this.props.className} />
@@ -32,7 +37,8 @@ App.defaultProps = {
 };
 
 App.propTypes = {
-	className: PropTypes.string
+	className: PropTypes.string,
+	location: locationShape.isRequired
 };
 
 export default styled(App)`
