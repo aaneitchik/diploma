@@ -1,8 +1,3 @@
-import 'uikit/dist/css/uikit.min.css';
-import 'react-select/dist/react-select.min.css';
-import 'react-tagging-input/dist/styles.css';
-import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -11,6 +6,11 @@ import { ThemeProvider, injectGlobal } from 'styled-components';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
+
+import 'uikit/dist/css/uikit.min.css';
+import 'react-select/dist/react-select.min.css';
+import 'react-tagging-input/dist/styles.css';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 
 import reducers from './reducers';
 

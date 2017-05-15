@@ -11,6 +11,7 @@ import { fileShape } from '../utils/common-proptypes';
 
 import Button from '../components/button';
 import Card from '../components/card';
+import Rating from '../components/rating';
 import TagList from '../components/tag-list';
 
 class File extends React.Component {
@@ -36,6 +37,12 @@ class File extends React.Component {
 			<Card className={this.props.className}>
 				<h4 className="title">{file.title}</h4>
 				<h5 className="author">{file.author}</h5>
+				{file.ratingSum === undefined
+					? null
+					: <Rating
+							rating={file.ratingSum}
+							interactive={file.canBeRated}
+						/>}
 				{videoFile
 					? <Video
 							autoPlay

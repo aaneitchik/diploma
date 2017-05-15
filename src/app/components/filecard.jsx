@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { fileShape } from '../utils/common-proptypes';
 
 import FileIcon from './file-icon';
+import Rating from '../components/rating';
 import TagList from './tag-list';
 
 const Filecard = props => {
@@ -22,6 +23,14 @@ const Filecard = props => {
 			<div className="card-body">
 				<p className="title">{file.title}</p>
 				<p className="author">{file.author}</p>
+				<p className="rating">
+					{file.ratingSum === undefined
+						? null
+						: <Rating
+								rating={file.ratingSum}
+								interactive={false}
+							/>}
+				</p>
 				<p className="short-description">{file.shortDescription}</p>
 				<TagList tags={file.tags} />
 				<p className="extension">.{file.fileExtension}</p>
@@ -65,7 +74,18 @@ export default styled(Filecard)`
 	
 	.author {
 		color: ${props => props.theme.secondaryTextColor};
+	}
+	
+	.rating {
 		margin-bottom: 1rem;
+	}
+	
+	.rating a {
+		font-size: 1.2rem;
+	}
+	
+	.rating .total {
+		display: none;
 	}
 	
 	.extension {
