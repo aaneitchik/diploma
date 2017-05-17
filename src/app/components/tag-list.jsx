@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 
 const TagList = props => {
 	const tags = props.tags.map(tag => (
-		<span key={tag} className="tag">#{tag}</span>
+		<Link to={`/search/${tag}`} key={tag} className="tag">#{tag}</Link>
 	));
 
 	return <div className={props.className}>{tags}</div>;
@@ -24,7 +25,7 @@ export default styled(TagList)`
 
 	.tag {
 		margin-right: 0.5rem;
-		color: ${props => props.theme.darkPrimaryColor};
+		color: ${props => props.theme.darkPrimaryColor} !important;
 		text-transform: uppercase;
 		font-family: SourceSansPro-Regular, sans serif;
 	}

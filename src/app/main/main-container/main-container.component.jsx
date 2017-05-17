@@ -24,7 +24,7 @@ const routes = [
 		component: File
 	},
 	{
-		path: '/search/:id',
+		path: '/search/:term?',
 		component: Search
 	}
 ];

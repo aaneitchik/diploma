@@ -24,10 +24,16 @@ class Search extends React.Component {
 		this.props.findFiles(values);
 	};
 	render() {
+		const initialValues = {
+			tags: this.props.match.params.term
+				? [this.props.match.params.term]
+				: []
+		};
 		return (
 			<div>
 				<Card className={this.props.className}>
 					<SearchForm
+						initialValues={initialValues}
 						onSubmit={this.submit}
 						selectedCategory={this.state.selectedCategory}
 						onCategoryChange={this.onCategoryChange}
@@ -49,6 +55,11 @@ Search.propTypes = {
 	className: PropTypes.string,
 	categories: PropTypes.arrayOf(shapes.categoryShape).isRequired,
 	findFiles: PropTypes.func.isRequired,
+	match: PropTypes.shape({
+		params: {
+			term: PropTypes.string
+		}
+	}).isRequired,
 	searchResults: PropTypes.arrayOf(shapes.fileShape)
 };
 

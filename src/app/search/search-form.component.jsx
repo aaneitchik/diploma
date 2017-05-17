@@ -82,8 +82,7 @@ SearchForm.propTypes = {
 };
 
 SearchForm = reduxForm({
-	form: 'search',
-	initialValues: { tags: [] }
+	form: 'search'
 })(SearchForm);
 
 export default styled(SearchForm)`
