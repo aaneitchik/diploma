@@ -8,12 +8,15 @@ export const subcategoryShape = PropTypes.shape({
 	name: PropTypes.string
 });
 
-export const categoryShape = PropTypes.oneOfType([PropTypes.shape({
-	_id: PropTypes.string,
-	name: PropTypes.string,
-	active: PropTypes.bool,
-	subcategories: PropTypes.arrayOf(subcategoryShape)
-}), PropTypes.string]);
+export const categoryShape = PropTypes.oneOfType([
+	PropTypes.shape({
+		_id: PropTypes.string,
+		name: PropTypes.string,
+		active: PropTypes.bool,
+		subcategories: PropTypes.arrayOf(subcategoryShape)
+	}),
+	PropTypes.string
+]);
 
 export const paginationShape = PropTypes.shape({
 	pageNumber: PropTypes.number,
