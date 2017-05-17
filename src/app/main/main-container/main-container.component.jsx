@@ -24,7 +24,7 @@ const routes = [
 		component: File
 	},
 	{
-		path: '/search',
+		path: '/search/:id',
 		component: Search
 	}
 ];
@@ -32,14 +32,14 @@ const routes = [
 const MainContainer = props => (
 	<div className={props.className}>
 		<Switch>
-		{routes.map(route => (
-			<Route
-				key={route.path}
-				path={route.path}
-				exact={route.exact}
-				component={route.component}
-			/>
-		))}
+			{routes.map(route => (
+				<Route
+					key={route.path}
+					path={route.path}
+					exact={route.exact}
+					component={route.component}
+				/>
+			))}
 		</Switch>
 	</div>
 );
