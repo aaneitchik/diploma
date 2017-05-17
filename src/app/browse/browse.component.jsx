@@ -34,9 +34,12 @@ class Browse extends React.Component {
 	}
 }
 
-Browse.defaultProps = {};
+Browse.defaultProps = {
+	files: []
+};
 
 Browse.propTypes = {
+	files: PropTypes.arrayOf(shapes.fileShape),
 	getFilesByPage: PropTypes.func.isRequired,
 	pagination: shapes.paginationShape.isRequired
 };
