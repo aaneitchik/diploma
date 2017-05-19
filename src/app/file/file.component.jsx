@@ -14,10 +14,20 @@ import Card from '../components/card';
 import Rating from '../components/rating';
 import TagList from '../components/tag-list';
 
+/* global DISQUS, window */
 class File extends React.Component {
 	componentDidMount() {
 		const fileId = this.props.match.params.id;
 		this.props.getFileById(fileId);
+		console.log(DISQUS);
+		DISQUS.reset({
+			reload: true,
+			config() {
+				console.log(this);
+				this.page.identifier = fileId;
+				this.page.url = window.location.href;
+			}
+		});
 	}
 
 	downloadFile = () => {
@@ -34,40 +44,47 @@ class File extends React.Component {
 			</Button>
 		);
 		return (
-			<Card className={this.props.className}>
-				<h4 className="title">{file.title}</h4>
-				<h5 className="author">{file.author}</h5>
-				{file.ratingSum === undefined
-					? null
-					: <Rating
-							rating={file.ratingSum}
-							interactive={file.canBeRated}
-						/>}
-				{videoFile
-					? <Video
-							autoPlay
-							controls={[
-								'PlayPause',
-								'Seek',
-								'Time',
-								'Volume',
-								'Fullscreen'
-							]}
-						>
-							<source
-								src={downloadLink}
-								type={`video/${file.fileExtension}`}
-							/>
-						</Video>
-					: null}
-				<p>{file.shortDescription}</p>
-				<p>{file.description}</p>
-				<TagList tags={file.tags} />
-				<div className="buttons">
-					<Button onClick={this.downloadFile}>Скачать файл</Button>
-					{file.fileExtension === 'pdf' ? pdfBtn : null}
-				</div>
-			</Card>
+			<div>
+				<Card className={this.props.className}>
+					<h4 className="title">{file.title}</h4>
+					<h5 className="author">{file.author}</h5>
+					{file.ratingSum === undefined
+						? null
+						: <Rating
+								rating={file.ratingSum}
+								interactive={file.canBeRated}
+							/>}
+					{videoFile
+						? <Video
+								autoPlay
+								controls={[
+									'PlayPause',
+									'Seek',
+									'Time',
+									'Volume',
+									'Fullscreen'
+								]}
+							>
+								<source
+									src={downloadLink}
+									type={`video/${file.fileExtension}`}
+								/>
+							</Video>
+						: null}
+					<p>{file.shortDescription}</p>
+					<p>{file.description}</p>
+					<TagList tags={file.tags} />
+					<div className="buttons">
+						<Button onClick={this.downloadFile}>
+							Скачать файл
+						</Button>
+						{file.fileExtension === 'pdf' ? pdfBtn : null}
+					</div>
+				</Card>
+				<Card>
+					<div id="disqus_thread"></div>
+				</Card>
+			</div>
 		);
 	}
 }
