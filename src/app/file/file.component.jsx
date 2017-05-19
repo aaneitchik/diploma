@@ -82,7 +82,7 @@ class File extends React.Component {
 					</div>
 				</Card>
 				<Card>
-					<div id="disqus_thread"></div>
+					<div id="disqus_thread" />
 				</Card>
 			</div>
 		);
@@ -111,6 +111,8 @@ function mapStateToProps(state) {
 }
 
 const styledFile = styled(File)`
+	margin-bottom: 0.5rem;
+
 	.title {
 		margin-bottom: 0.5rem;
 		font-weight: bold;
