@@ -20,6 +20,12 @@ const TopNavigation = props => (
 		<div className="col">
 			<Link to="/search"><Icon type="search" /></Link>
 			<Link to="/file/load"><Button>Загрузить документ</Button></Link>
+			<span className="user-btn">
+				<Button><Icon type="user" />{props.user.email}</Button>
+				<div data-uk-dropdown="mode: click">
+					<Link to="/login">Logout</Link>
+				</div>
+			</span>
 		</div>
 	</div>
 );
@@ -44,17 +50,24 @@ export default styled(TopNavigation)`
 	border: 1px solid ${props => props.theme.borderColor};
 
 	.col {
-		flex: 1;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 	
 	.col:first-child {
+		flex: 1;
 		justify-content: flex-start;
 	}
 	
 	.col:last-child {
+		flex: 1;
 		justify-content: flex-end;
+	}
+	
+	.user-btn .uk-button {
+		padding: 0;
+		padding-left: 0.5rem;
+		border: 0 !important;
 	}
 `;
