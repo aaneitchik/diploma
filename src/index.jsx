@@ -50,7 +50,7 @@ injectGlobal`
 	body {
 		font-size: 14px;
 		font-family: SourceSansPro-Light, sans serif;
-		background-color: rgba(230, 242, 240, 0.4);
+		background-color: rgba(230, 242, 240, 0.8);
 	}
 	
 	.title {

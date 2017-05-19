@@ -71,6 +71,7 @@ class File extends React.Component {
 								/>
 							</Video>
 						: null}
+					<p><b>{`${file.category},`} {file.subcategory}</b></p>
 					<p>{file.shortDescription}</p>
 					<p>{file.description}</p>
 					<TagList tags={file.tags} />

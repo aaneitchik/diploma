@@ -54,7 +54,7 @@ const LoadFileForm = props => (
 				labelKey="name"
 				valueKey="name"
 				onChange={props.onCategoryChange}
-			    placeholder="Выберите категорию"
+				placeholder="Выберите категорию"
 			/>
 			{!props.selectedCategory.name
 				? null
@@ -66,7 +66,26 @@ const LoadFileForm = props => (
 						options={props.selectedCategory.subcategories}
 						labelKey="name"
 						valueKey="name"
-				        placeholder="Выберите подкатегорию"
+						onChange={props.onSubcategoryChange}
+						placeholder="Выберите подкатегорию"
+					/>}
+			{props.selectedSubcategory.name !== 'Статьи'
+				? null
+				: <InputWithLabel
+						label="Место публикации"
+						name="publicationPlace"
+						className="uk-width-1-2"
+						component="input"
+						type="text"
+					/>}
+			{props.selectedSubcategory.name !== 'Статьи'
+				? null
+				: <InputWithLabel
+						label="Год публикации"
+						name="publicationYear"
+						className="uk-width-1-8"
+						component="input"
+						type="number"
 					/>}
 			<InputWithLabel
 				name="tags"
@@ -85,7 +104,9 @@ LoadFileForm.propTypes = {
 	handleSubmit: PropTypes.func.isRequired,
 	categories: PropTypes.arrayOf(categoryShape).isRequired,
 	onCategoryChange: PropTypes.func.isRequired,
-	selectedCategory: categoryShape.isRequired
+	onSubcategoryChange: PropTypes.func.isRequired,
+	selectedCategory: categoryShape.isRequired,
+	selectedSubcategory: categoryShape.isRequired
 };
 
 export default reduxForm({

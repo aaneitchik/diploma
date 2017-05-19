@@ -11,11 +11,15 @@ class LoadFile extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			selectedCategory: 'All'
+			selectedCategory: 'All',
+			selectedSubcategory: 'All'
 		};
 	}
 	onCategoryChange = selectedCategory => {
 		this.setState(prevState => ({ ...prevState, selectedCategory }));
+	};
+	onSubcategoryChange = selectedSubcategory => {
+		this.setState(prevState => ({ ...prevState, selectedSubcategory }));
 	};
 	submit = values => {
 		console.log(values);
@@ -27,7 +31,9 @@ class LoadFile extends React.Component {
 					onSubmit={this.submit}
 					categories={this.props.categories}
 					selectedCategory={this.state.selectedCategory}
+					selectedSubcategory={this.state.selectedSubcategory}
 					onCategoryChange={this.onCategoryChange}
+				    onSubcategoryChange={this.onSubcategoryChange}
 				/>
 			</div>
 		);
