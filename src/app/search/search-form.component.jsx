@@ -35,7 +35,7 @@ let SearchForm = props => {
 			<InputWithLabel
 				name="category"
 				label="Категория"
-				className="uk-width-1-2 uk-margin"
+				className="uk-width-1-2"
 				component={SelectDropdown}
 				options={props.categories}
 				labelKey="name"
@@ -48,17 +48,36 @@ let SearchForm = props => {
 				: <InputWithLabel
 						name="subcategory"
 						label="Подкатегория"
-						className="uk-width-1-2 uk-margin"
+						className="uk-width-1-2"
 						component={SelectDropdown}
 						options={props.selectedCategory.subcategories}
 						labelKey="name"
 						valueKey="name"
+						onChange={props.onSubcategoryChange}
 						placeholder="Выбраны все подкатегории"
+					/>}
+			{props.selectedSubcategory.name !== 'Статьи'
+				? null
+				: <InputWithLabel
+						label="Место публикации"
+						name="publicationPlace"
+						className="uk-width-1-2"
+						component="input"
+						type="text"
+					/>}
+			{props.selectedSubcategory.name !== 'Статьи'
+				? null
+				: <InputWithLabel
+						label="Год публикации"
+						name="publicationYear"
+						className="uk-width-1-4"
+						component="input"
+						type="number"
 					/>}
 			<InputWithLabel
 				name="tags"
 				label="Теги"
-				className="uk-width-1-1 uk-margin"
+				className="uk-width-1-1"
 				component={TagInput}
 			/>
 			<div className="buttons uk-width-1-1">
@@ -70,7 +89,8 @@ let SearchForm = props => {
 
 SearchForm.defaultProps = {
 	className: '',
-	selectedCategory: 'All'
+	selectedCategory: 'All',
+	selectedSubcategory: 'All'
 };
 
 SearchForm.propTypes = {
@@ -78,7 +98,9 @@ SearchForm.propTypes = {
 	categories: PropTypes.arrayOf(categoryShape).isRequired,
 	handleSubmit: PropTypes.func.isRequired,
 	onCategoryChange: PropTypes.func.isRequired,
-	selectedCategory: categoryShape
+	onSubcategoryChange: PropTypes.func.isRequired,
+	selectedCategory: categoryShape,
+	selectedSubcategory: categoryShape
 };
 
 SearchForm = reduxForm({

@@ -14,11 +14,15 @@ class Search extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			selectedCategory: 'All'
+			selectedCategory: 'All',
+			selectedSubcategory: 'All'
 		};
 	}
 	onCategoryChange = selectedCategory => {
 		this.setState(prevState => ({ ...prevState, selectedCategory }));
+	};
+	onSubcategoryChange = selectedSubcategory => {
+		this.setState(prevState => ({ ...prevState, selectedSubcategory }));
 	};
 	submit = values => {
 		this.props.findFiles(values);
@@ -36,7 +40,9 @@ class Search extends React.Component {
 						initialValues={initialValues}
 						onSubmit={this.submit}
 						selectedCategory={this.state.selectedCategory}
+						selectedSubcategory={this.state.selectedSubcategory}
 						onCategoryChange={this.onCategoryChange}
+						onSubcategoryChange={this.onSubcategoryChange}
 						categories={this.props.categories}
 					/>
 				</Card>
