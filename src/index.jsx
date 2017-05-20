@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ReduxToastr from 'react-redux-toastr';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 
 import { createStore, applyMiddleware } from 'redux';
@@ -70,6 +71,13 @@ ReactDOM.render(
 				<div>
 					<Route path="/login" component={Login} />
 					<Route path="/" component={requireAuth(App)} />
+					<ReduxToastr
+						timeOut={4000}
+						newestOnTop={false}
+						preventDuplicates
+						transitionIn="fadeIn"
+						transitionOut="fadeOut"
+					/>
 				</div>
 			</ThemeProvider>
 		</Router>

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { DefaultPlayer as Video } from 'react-html5video';
+import { toastr } from 'react-redux-toastr'
 import styled from 'styled-components';
 
 import 'react-html5video/dist/styles.css';
@@ -19,11 +20,9 @@ class File extends React.Component {
 	componentDidMount() {
 		const fileId = this.props.match.params.id;
 		this.props.getFileById(fileId);
-		console.log(DISQUS);
 		DISQUS.reset({
 			reload: true,
 			config() {
-				console.log(this);
 				this.page.identifier = fileId;
 				this.page.url = window.location.href;
 			}
@@ -33,6 +32,9 @@ class File extends React.Component {
 	downloadFile = () => {
 		const fileId = this.props.file._id;
 		const filename = this.props.file.filename;
+		// TODO: temp, just for demo
+		toastr.light('', 'Сервер перегружен, файл придет Вам на почту при первой возможности.', { icon: 'info'});
+		return;
 		this.props.downloadFile(fileId, filename);
 	};
 
