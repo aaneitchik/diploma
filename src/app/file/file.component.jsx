@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { DefaultPlayer as Video } from 'react-html5video';
-import { toastr } from 'react-redux-toastr'
+import { toastr } from 'react-redux-toastr';
+import ReactS3Uploader from 'react-s3-uploader';
 import styled from 'styled-components';
 
 import 'react-html5video/dist/styles.css';
@@ -77,6 +78,7 @@ class File extends React.Component {
 					<p>{file.shortDescription}</p>
 					<p>{file.description}</p>
 					<TagList tags={file.tags} />
+					<ReactS3Uploader signingUrl="/s3/bsu-library"/>
 					<div className="buttons">
 						<Button onClick={this.downloadFile}>
 							Скачать файл
