@@ -33,7 +33,7 @@ class LoadFile extends React.Component {
 					selectedCategory={this.state.selectedCategory}
 					selectedSubcategory={this.state.selectedSubcategory}
 					onCategoryChange={this.onCategoryChange}
-				    onSubcategoryChange={this.onSubcategoryChange}
+					onSubcategoryChange={this.onSubcategoryChange}
 				/>
 			</div>
 		);
