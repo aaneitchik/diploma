@@ -1,6 +1,8 @@
+const fs = require('fs');
 const express = require('express');
 const passport = require('passport');
 const multer = require('multer');
+const AWS = require('aws-sdk');
 
 const fileCtrl = require('../controllers/file.controller');
 const categoryCtrl = require('../controllers/category.controller');
@@ -12,6 +14,23 @@ require('../../config/passport')(passport);
 const storageConfig = require('../../config/storage');
 
 const upload = multer({ storage: storageConfig });
+
+AWS.config.loadFromPath('./config/s3.json');
+
+const s3Config = require('../../config/s3');
+
+// upload file to s3
+fileRouter.use(
+	'/s3',
+	require('react-s3-uploader/s3router')({
+		bucket: s3Config.bucket,
+		region: s3Config.region, // optional
+		signatureVersion: 'v4', // optional (use for some amazon regions: frankfurt and others)
+		headers: { 'Access-Control-Allow-Origin': '*' }, // optional
+		ACL: 'public-read', // this is default
+		uniquePrefix: true // (4.0.2 and above) default is true, setting the attribute to false preserves the original filename in S3
+	})
+);
 
 // load file to the lib
 fileRouter.post('/upload', upload.single('file'), (req, res) => {

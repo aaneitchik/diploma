@@ -1,4 +1,4 @@
 {
 	"presets": [["es2015", { "loose": true, "modules": false }], "react", "stage-1"],
-	"plugins": ["lodash", "external-helpers"]
+	"plugins": ["lodash"]
 }

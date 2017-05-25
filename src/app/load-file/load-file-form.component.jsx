@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { PropTypes } from 'prop-types';
+import ReactS3Uploader from 'react-s3-uploader';
 
 import Button from '../components/button';
 import Card from '../components/card';
@@ -93,6 +94,7 @@ const LoadFileForm = props => (
 				className="uk-width-1-1"
 				component={TagInput}
 			/>
+			<ReactS3Uploader signingUrl="/api/files/s3/sign" />
 			<div className="buttons uk-width-1-1">
 				<Button type="submit">Загрузить документ</Button>
 			</div>
