@@ -6,7 +6,7 @@
 	"author": "aaneitchik",
 	"license": "MIT",
 	"scripts": {
-		"build": "rimraf dist/ && cross-env NODE_ENV=production webpack",
+		"build": "rimraf dist/ && cross-env NODE_ENV=production webpack -p",
 		"dev": "cross-env NODE_ENV=development node dev-server.js",
 		"server": "node server/server.js"
 	},
@@ -35,6 +35,8 @@
 	},
 	"dependencies": {
 		"axios": "^0.16.1",
+		"babel-plugin-external-helpers": "^6.22.0",
+		"babel-plugin-lodash": "^3.2.11",
 		"bcrypt-nodejs": "^0.0.3",
 		"bluebird": "^3.5.0",
 		"body-parser": "^1.17.1",

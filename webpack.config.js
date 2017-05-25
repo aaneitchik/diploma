@@ -23,7 +23,6 @@ const entry = PRODUCTION
 
 const plugins = PRODUCTION
 	? [
-			new webpack.optimize.UglifyJsPlugin(),
 			new webpack.optimize.CommonsChunkPlugin({
 				name: 'vendor',
 				minChunks: Infinity,
