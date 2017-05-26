@@ -71,7 +71,7 @@
 		"redux": "^3.6.0",
 		"redux-form": "^6.6.3",
 		"redux-thunk": "^2.2.0",
-		"styled-components": "^1.4.5",
+		"styled-components": "^2.0.0",
 		"uikit": "^3.0.0-beta.22",
 		"webpack": "^2.3.3",
 		"webpack-bundle-analyzer": "^2.8.2",
