@@ -1,30 +1,30 @@
-const localStrategy = require('passport-local');
+const LocalStrategy = require('passport-local');
 
 const User = require('../server/models/user.model');
 const ROLES = require('../server/roles');
 
 module.exports = function(passport) {
-	passport.serializeUser(function(user, done) {
+	passport.serializeUser((user, done) => {
 		done(null, user.id);
 	});
 
-	passport.deserializeUser(function(id, done) {
-		User.findById(id, function(err, user) {
+	passport.deserializeUser((id, done) => {
+		User.findById(id, (err, user) => {
 			done(err, user);
 		});
 	});
 
 	passport.use(
 		'local-signup',
-		new localStrategy(
+		new LocalStrategy(
 			{
 				usernameField: 'email',
 				passwordField: 'password',
 				passReqToCallback: true
 			},
-			function(req, email, password, done) {
-				process.nextTick(function() {
-					User.findOne({ email: email }, function(err, user) {
+			(req, email, password, done) => {
+				process.nextTick(() => {
+					User.findOne({ email }, (err, user) => {
 						if (err) return done(err);
 						if (user) {
 							return done(
@@ -35,19 +35,18 @@ module.exports = function(passport) {
 									'That email is already taken.'
 								)
 							);
-						} else {
-							const newUser = new User();
-
-							newUser.email = email;
-							newUser.password = newUser.generateHash(password);
-							newUser.role = ROLES.USER;
-
-							// save the user
-							newUser.save(function(err) {
-								if (err) throw err;
-								return done(null, newUser);
-							});
 						}
+						const newUser = new User();
+
+						newUser.email = email;
+						newUser.password = newUser.generateHash(password);
+						newUser.role = ROLES.USER;
+
+						// save the user
+						newUser.save(err => {
+							if (err) throw err;
+							return done(null, newUser);
+						});
 					});
 				});
 			}
@@ -56,19 +55,19 @@ module.exports = function(passport) {
 
 	passport.use(
 		'local-login',
-		new localStrategy(
+		new LocalStrategy(
 			{
 				// by default, local strategy uses username and password, we will override with email
 				usernameField: 'email',
 				passwordField: 'password',
 				passReqToCallback: true // allows us to pass back the entire request to the callback
 			},
-			function(req, email, password, done) {
+			(req, email, password, done) => {
 				// callback with email and password from our form
 
 				// find a user whose email is the same as the forms email
 				// we are checking to see if the user trying to login already exists
-				User.findOne({ email: email }, function(err, user) {
+				User.findOne({ email }, (err, user) => {
 					// if there are any errors, return the error before anything else
 					if (err) return done(err);
 
