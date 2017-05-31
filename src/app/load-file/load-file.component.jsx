@@ -11,6 +11,7 @@ class LoadFile extends React.Component {
 	constructor() {
 		super();
 		this.state = {
+			file: {},
 			selectedCategory: 'All',
 			selectedSubcategory: 'All'
 		};
@@ -21,8 +22,22 @@ class LoadFile extends React.Component {
 	onSubcategoryChange = selectedSubcategory => {
 		this.setState(prevState => ({ ...prevState, selectedSubcategory }));
 	};
+	onUploadFinish = (awsInfo, file) => {
+		this.setState(prevState => ({
+			...prevState,
+			file: {
+				publicUrl: awsInfo.publicUrl,
+				name: file.name
+			}
+		}));
+	};
 	submit = values => {
-		console.log(values);
+		this.props.loadFile({
+			...values,
+			category: values.category.name,
+			subcategory: values.subcategory.name,
+			file: this.state.file
+		});
 	};
 	render() {
 		return (
@@ -34,6 +49,7 @@ class LoadFile extends React.Component {
 					selectedSubcategory={this.state.selectedSubcategory}
 					onCategoryChange={this.onCategoryChange}
 					onSubcategoryChange={this.onSubcategoryChange}
+					onUploadFinish={this.onUploadFinish}
 				/>
 			</div>
 		);
@@ -41,7 +57,8 @@ class LoadFile extends React.Component {
 }
 
 LoadFile.propTypes = {
-	categories: PropTypes.arrayOf(categoryShape).isRequired
+	categories: PropTypes.arrayOf(categoryShape).isRequired,
+	loadFile: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {

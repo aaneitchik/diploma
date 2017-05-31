@@ -26,20 +26,21 @@ exports.sendFileByMail = sendFileByMail;
 exports.setRating = setRating;
 
 // add file
-function addFile(res, fileInfo, file) {
+function addFile(res, documentInfo) {
+	const file = documentInfo.file;
 	const newFile = new File({
-		title: fileInfo.title,
-		author: fileInfo.author,
-		tags: fileInfo.tags,
-		category: fileInfo.category,
-		subcategory: fileInfo.subcategory,
-		publicationYear: fileInfo.publicationYear || null,
-		publicationPlace: fileInfo.publicationPlace || null,
-		shortDescription: fileInfo.shortDescription,
-		description: fileInfo.description,
-		filepath: `${file.destination}/${file.originalname}`,
-		filename: file.originalname,
-		fileExtension: getFileExtension(file.originalname)
+		title: documentInfo.title,
+		author: documentInfo.author,
+		tags: documentInfo.tags,
+		category: documentInfo.category,
+		subcategory: documentInfo.subcategory,
+		publicationYear: documentInfo.publicationYear || null,
+		publicationPlace: documentInfo.publicationPlace || null,
+		shortDescription: documentInfo.shortDescription,
+		description: documentInfo.description,
+		filepath: file.publicUrl,
+		filename: file.name,
+		fileExtension: getFileExtension(file.name)
 	});
 	newFile.save(err => {
 		if (err) {

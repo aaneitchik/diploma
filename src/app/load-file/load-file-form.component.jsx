@@ -94,7 +94,10 @@ const LoadFileForm = props => (
 				className="uk-width-1-1"
 				component={TagInput}
 			/>
-			<ReactS3Uploader signingUrl="/api/files/s3/sign" />
+			<ReactS3Uploader
+				signingUrl="/api/files/s3/sign"
+				onFinish={props.onUploadFinish}
+			/>
 			<div className="buttons uk-width-1-1">
 				<Button type="submit">Загрузить документ</Button>
 			</div>
@@ -107,6 +110,7 @@ LoadFileForm.propTypes = {
 	categories: PropTypes.arrayOf(categoryShape).isRequired,
 	onCategoryChange: PropTypes.func.isRequired,
 	onSubcategoryChange: PropTypes.func.isRequired,
+	onUploadFinish: PropTypes.func.isRequired,
 	selectedCategory: categoryShape.isRequired,
 	selectedSubcategory: categoryShape.isRequired
 };

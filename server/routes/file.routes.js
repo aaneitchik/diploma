@@ -34,9 +34,8 @@ fileRouter.use(
 
 // load file to the lib
 fileRouter.post('/upload', upload.single('file'), (req, res) => {
-	const fileInfo = JSON.parse(req.body.fileInfo);
-	const file = req.file;
-	return fileCtrl.addFile(res, fileInfo, file);
+	const documentInfo = req.body;
+	return fileCtrl.addFile(res, documentInfo);
 });
 
 // download file

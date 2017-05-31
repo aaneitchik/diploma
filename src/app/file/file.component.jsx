@@ -30,12 +30,8 @@ class File extends React.Component {
 	}
 
 	downloadFile = () => {
-		const fileId = this.props.file._id;
-		const filename = this.props.file.filename;
-		// TODO: temp, just for demo
-		toastr.light('', 'Сервер перегружен, файл придет Вам на почту при первой возможности.', { icon: 'info'});
-		return;
-		this.props.downloadFile(fileId, filename);
+		const { filename, filepath } = this.props.file;
+		this.props.downloadFile(filepath, filename);
 	};
 
 	render() {
