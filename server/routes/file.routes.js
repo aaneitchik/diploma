@@ -15,7 +15,9 @@ const storageConfig = require('../../config/storage');
 
 const upload = multer({ storage: storageConfig });
 
-AWS.config.loadFromPath('./config/s3.json');
+if (!process.env.AWS_ACCESS_KEY_ID) {
+	AWS.config.loadFromPath('./config/s3.json');
+}
 
 const s3Config = require('../../config/s3');
 
