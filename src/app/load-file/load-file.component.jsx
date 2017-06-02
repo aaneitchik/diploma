@@ -50,6 +50,7 @@ class LoadFile extends React.Component {
 					onCategoryChange={this.onCategoryChange}
 					onSubcategoryChange={this.onSubcategoryChange}
 					onUploadFinish={this.onUploadFinish}
+					file={this.state.file}
 				/>
 			</div>
 		);
