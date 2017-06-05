@@ -29,3 +29,9 @@ export function loadFile(file) {
 		);
 	};
 }
+
+export function quitLoadPage() {
+	return dispatch => {
+		dispatch({ type: TOGGLE_FILE_UPLOAD, payload: false });
+	};
+}
