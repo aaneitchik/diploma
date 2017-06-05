@@ -42,3 +42,7 @@ export const inputShape = PropTypes.shape({
 	value: PropTypes.any, // eslint-disable-line react/forbid-prop-types,
 	onChange: PropTypes.func
 });
+
+export const userShape = PropTypes.shape({
+	email: PropTypes.string
+});

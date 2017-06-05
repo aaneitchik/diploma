@@ -7,6 +7,8 @@ import Button from '../../components/button';
 import Icon from '../../components/icon';
 import SidebarToggle from '../sidebar/sidebar-toggle';
 
+import { userShape } from '../../utils/common-proptypes';
+
 const TopNavigation = props => (
 	<div className={props.className}>
 		<div className="col">
@@ -23,7 +25,9 @@ const TopNavigation = props => (
 			<span className="user-btn">
 				<Button><Icon type="user" />{props.user.email}</Button>
 				<div data-uk-dropdown="mode: click">
-					<Link to="/login">Logout</Link>
+					<Link to={{ pathname: '/login', state: { logout: true } }}>
+						Logout
+					</Link>
 				</div>
 			</span>
 		</div>
@@ -36,7 +40,8 @@ TopNavigation.defaultProps = {
 
 TopNavigation.propTypes = {
 	className: PropTypes.string,
-	location: PropTypes.string.isRequired
+	location: PropTypes.string.isRequired,
+	user: userShape.isRequired
 };
 
 export default styled(TopNavigation)`

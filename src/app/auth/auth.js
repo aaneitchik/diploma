@@ -5,9 +5,12 @@ const ROOT_URL = '/api/';
 
 export const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS';
 const LOGIN_ERROR = 'auth/LOGIN_ERROR';
+const LOGOUT_SUCCESS = 'auth/LOGOUT_SUCCESS';
+const TOGGLE_LOGGING_OUT = 'auth/TOGGLE_LOGGING_OUT';
 
 const INITIAL_STATE = {
 	authenticated: false,
+	loggingOut: false,
 	user: { availableCategories: [] },
 	triedLogin: false
 };
@@ -29,6 +32,20 @@ export default function reducer(state = INITIAL_STATE, action) {
 			return { ...state, triedLogin: true };
 		}
 
+		case LOGOUT_SUCCESS: {
+			return {
+				...state,
+				authenticated: false,
+				triedLogin: true,
+				loggingOut: false
+			};
+		}
+
+		case TOGGLE_LOGGING_OUT: {
+			const authenticated = action.payload ? false : state.authenticated;
+			return { ...state, loggingOut: action.payload, authenticated };
+		}
+
 		default:
 			return state;
 	}
@@ -43,6 +60,7 @@ export function login(creds) {
 			})
 			.catch(err => {
 				dispatch({ type: LOGIN_ERROR, payload: err });
+				dispatch({ type: TOGGLE_LOGGING_OUT, payload: false });
 			});
 	};
 }
@@ -57,6 +75,20 @@ export function loginWithCookies() {
 			.catch(err => {
 				dispatch({ type: LOGIN_ERROR, payload: err });
 			});
+	};
+}
+
+export function logout() {
+	return dispatch => {
+		dispatch({ type: TOGGLE_LOGGING_OUT, payload: true });
+		axios
+			.post(`${ROOT_URL}logout`)
+			.then(response =>
+				dispatch({ type: LOGOUT_SUCCESS, payload: response })
+			)
+			.catch(() =>
+				dispatch({ type: TOGGLE_LOGGING_OUT, payload: false })
+			);
 	};
 }
 
