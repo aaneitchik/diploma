@@ -5,15 +5,14 @@ import styled from 'styled-components';
 
 import { inputShape } from '../utils/common-proptypes';
 
-const SelectDropdown = props => (
+const SelectDropdown = props =>
 	<Select
 		name={props.input.name}
 		options={props.options}
 		value={props.input.value}
 		onChange={props.input.onChange}
 		{...props}
-	/>
-);
+	/>;
 
 SelectDropdown.defaultProps = {
 	labelKey: 'label',

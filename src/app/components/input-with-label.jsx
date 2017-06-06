@@ -2,7 +2,7 @@ import React from 'react';
 import { Field } from 'redux-form';
 import { PropTypes } from 'prop-types';
 
-const InputWithLabel = props => (
+const InputWithLabel = props =>
 	<div className={`${props.className}`}>
 		<label className="uk-form-label" htmlFor={props.name}>
 			{props.label}
@@ -10,8 +10,7 @@ const InputWithLabel = props => (
 		<div className="uk-form-controls">
 			<Field id={props.name} {...props} className="uk-input" />
 		</div>
-	</div>
-);
+	</div>;
 
 InputWithLabel.defaultProps = {
 	className: ''

@@ -14,7 +14,7 @@ import { categoryShape } from '../utils/common-proptypes';
 
 const FileInputLabel = Button.withComponent('label');
 
-let LoadFileForm = props => (
+let LoadFileForm = props =>
 	<Card>
 		<form
 			onSubmit={props.handleSubmit}
@@ -115,8 +115,7 @@ let LoadFileForm = props => (
 				<Button type="submit">Загрузить документ</Button>
 			</div>
 		</form>
-	</Card>
-);
+	</Card>;
 
 LoadFileForm.defaultProps = {
 	className: ''
@@ -137,6 +136,20 @@ LoadFileForm.propTypes = {
 	}).isRequired
 };
 
+const validate = values => {
+	const errors = {};
+	if (!values.title) {
+		errors.title = 'Название - обязательное поле!';
+	}
+	if (!values.author) {
+		errors.author = 'Имя автора - обязательное поле!';
+	}
+	if (!values.shortDescription) {
+		errors.shortDescription = 'Краткое описание - обязательное поле!';
+	}
+	return errors;
+};
+
 LoadFileForm = styled(LoadFileForm)`
 	.file-uploader {
 		width: 0.1px;
@@ -154,5 +167,6 @@ LoadFileForm = styled(LoadFileForm)`
 
 export default reduxForm({
 	form: 'load-file',
+	validate,
 	initialValues: { tags: [] }
 })(LoadFileForm);
