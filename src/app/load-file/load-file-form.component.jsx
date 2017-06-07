@@ -25,35 +25,35 @@ let LoadFileForm = props =>
 				label="Название"
 				name="title"
 				className="uk-width-1-1"
-				component="input"
+				fieldComponent="input"
 				type="text"
 			/>
 			<InputWithLabel
 				label="Автор"
 				name="author"
 				className="uk-width-1-2"
-				component="input"
+				fieldComponent="input"
 				type="text"
 			/>
 			<InputWithLabel
 				label="Краткое описание"
 				name="shortDescription"
 				className="uk-width-1-1"
-				component="textarea"
+				fieldComponent="textarea"
 				type="text"
 			/>
 			<InputWithLabel
 				label="Полное описание"
 				name="description"
 				className="uk-width-1-1"
-				component="textarea"
+				fieldComponent="textarea"
 				type="text"
 			/>
 			<InputWithLabel
 				name="category"
 				label="Категория"
 				className="uk-width-1-2"
-				component={SelectDropdown}
+				fieldComponent={SelectDropdown}
 				options={props.categories}
 				labelKey="name"
 				valueKey="name"
@@ -66,7 +66,7 @@ let LoadFileForm = props =>
 						name="subcategory"
 						label="Подкатегория"
 						className="uk-width-1-2"
-						component={SelectDropdown}
+						fieldComponent={SelectDropdown}
 						options={props.selectedCategory.subcategories}
 						labelKey="name"
 						valueKey="name"
@@ -79,7 +79,7 @@ let LoadFileForm = props =>
 						label="Место публикации"
 						name="publicationPlace"
 						className="uk-width-1-2"
-						component="input"
+						fieldComponent="input"
 						type="text"
 					/>}
 			{props.selectedSubcategory.name !== 'Статьи'
@@ -88,14 +88,14 @@ let LoadFileForm = props =>
 						label="Год публикации"
 						name="publicationYear"
 						className="uk-width-1-8"
-						component="input"
+						fieldComponent="input"
 						type="number"
 					/>}
 			<InputWithLabel
 				name="tags"
 				label="Теги"
 				className="uk-width-1-1"
-				component={TagInput}
+				fieldComponent={TagInput}
 			/>
 			<div>
 				<ReactS3Uploader
