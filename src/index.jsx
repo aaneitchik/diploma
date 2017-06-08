@@ -7,6 +7,7 @@ import { ThemeProvider, injectGlobal } from 'styled-components';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import 'uikit/dist/css/uikit.min.css';
 import 'react-select/dist/react-select.min.css';
@@ -22,8 +23,11 @@ import requireAuth from './app/auth/auth.component';
 import SourceSansProRegular from './assets/fonts/SourceSansPro-Regular.otf';
 import SourceSansProLight from './assets/fonts/SourceSansPro-Light.otf';
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-const store = createStoreWithMiddleware(reducers);
+const composeEnhancers = composeWithDevTools({});
+const store = createStore(
+	reducers,
+	composeEnhancers(applyMiddleware(reduxThunk))
+);
 
 /* global document */
 
