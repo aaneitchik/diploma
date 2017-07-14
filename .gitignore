@@ -2,6 +2,7 @@
 # Created by https://www.gitignore.io/api/node,webstorm,intellij
 
 uploads
+config/s3.js
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
